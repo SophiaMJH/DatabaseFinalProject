@@ -29,11 +29,9 @@ class Statement{
 	final int PHONEBOOK = 1;
 	final int SCHEDULE = 2;
 	final int NOTE = 3;
-	private String sqlStatement;
-	private String databaseName;
-	private String databaseAttributes;
 
-	private void setDatabaseName(int state){
+	private String makeDatabaseName(int state){
+		String databaseName = "";
 		if(state == PHONEBOOK)
 			databaseName = "PhoneBook";
 		else if(state == SCHEDULE)
@@ -42,9 +40,12 @@ class Statement{
 			databaseName = "Note";
 		else
 			;//Exception
+		return databaseName;
 	}
 	
-	private void setDatabaseAttributesForAddition(int state){
+	private String makeAttributesStringForAddition(int state){
+		
+		String databaseAttributes = "";
 		if(state == PHONEBOOK)
 			databaseAttributes = "(id, name, phoneNumber, phoneIndex ) ";
 		else if(state == SCHEDULE)
@@ -53,6 +54,7 @@ class Statement{
 			databaseAttributes = "(id, note, noteIndex ) ";
 		else
 			;//Exception
+		return databaseAttributes;
 	}
 	
 	private String makeValueStringForAddition(int state, int maxIndex){
@@ -103,27 +105,24 @@ class Statement{
 	}
 
 	private String makeStatementForAddition(int state, int maxIndex){
-		
-		setDatabaseName(state);
-		setDatabaseAttributesForAddition(state);
+		String sqlStatement;
 		sqlStatement = "INSERT INTO " 
-						+ databaseName
-						+ databaseAttributes
-						+ makeValueStringForAddition(state, maxIndex);;
+						+ makeDatabaseName(state)
+						+ makeAttributesStringForAddition(state)
+						+ makeValueStringForAddition(state, maxIndex);
 		return sqlStatement;
 	}
 	
 	private String makeStatementforViewing(int state){
-		
-		setDatabaseName(state);
-		sqlStatement = "SELECT * FROM " + databaseName;
+		String sqlStatement;
+		sqlStatement = "SELECT * FROM " + makeDatabaseName(state);
 		return sqlStatement;
 	}
 	
 	private String deleteStatementforViewing(int state, int selectedIndex){
-		
-		setDatabaseName(state);
-		sqlStatement = "DELETE FROM "+ databaseName + "WHERE " + makeIndexName(state) + "=" + selectedIndex;
+		String sqlStatement;
+		sqlStatement = "DELETE FROM " + makeDatabaseName(state)
+						+ "WHERE " + makeIndexName(state) + "=" + selectedIndex;
 		return sqlStatement;
 	}
 	
