@@ -24,6 +24,7 @@ class Note{
 
 
 
+<<<<<<< HEAD
 class Statement{
 	
 	final int PHONEBOOK = 1;
@@ -214,6 +215,8 @@ class InputFromUser{
 
 
 
+=======
+>>>>>>> 756e6bc307065db0f5c2d8e351c87f1a3620c3a2
 
 
 
