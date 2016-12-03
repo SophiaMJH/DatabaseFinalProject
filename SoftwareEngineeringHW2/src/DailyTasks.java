@@ -2,36 +2,30 @@ import java.util.*;
 import java.io.*;
 
 
-class PhoneBook{
-	String id;
-	String name;
-	String phoneNumber;
-	int phoneIndex;
-}
-
-class Schedule{
-	String id;
-	Date date;
-	String description;
-	int scheduleIndex;
-}
-
-class Note{
-	String id;
-	String note;
-	int noteIndex;
-}
-
-
-
 class Statement{
 	
 	final int PHONEBOOK = 1;
 	final int SCHEDULE = 2;
 	final int NOTE = 3;
+<<<<<<< HEAD
 
 	private String makeDatabaseName(int state){
 		String databaseName = "";
+=======
+	
+	private String sqlStatement;
+	private String databaseName;
+	private String databaseAttributes;
+	private String valuesForAddition;
+	private int index;
+	private String id;
+	
+	private void setIndex(int maxIndex){
+		index = maxIndex;	// add 할 때의 index 넣는다.
+	}
+	
+	private void setDatabaseName(int state){
+>>>>>>> parent of 32eb892... Statement
 		if(state == PHONEBOOK)
 			databaseName = "PhoneBook";
 		else if(state == SCHEDULE)
@@ -39,8 +33,12 @@ class Statement{
 		else if(state == NOTE)
 			databaseName = "Note";
 		else
+<<<<<<< HEAD
 			;//Exception
 		return databaseName;
+=======
+			;//Exeption
+>>>>>>> parent of 32eb892... Statement
 	}
 	
 	private String makeAttributesStringForAddition(int state){
@@ -53,44 +51,55 @@ class Statement{
 		else if(state == NOTE)
 			databaseAttributes = "(id, note, noteIndex ) ";
 		else
+<<<<<<< HEAD
 			;//Exception
 		return databaseAttributes;
+=======
+			;//Exeption
+>>>>>>> parent of 32eb892... Statement
 	}
 	
-	private String makeValueStringForAddition(int state, int maxIndex){
+	private void setValuesForAddition(int state){
 		
 		Scanner scan = new Scanner(System.in);
-		String valuesForAddition = "";
-		InputFromUser inputFromUser = new InputFromUser();
 		if(state == PHONEBOOK){
-			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
-			valuesForAddition = "values("
-								+ valuesForPhoneBook.id + ", "
-								+ valuesForPhoneBook.name +", "
-								+ valuesForPhoneBook.phoneNumber + ", "
-								+ valuesForPhoneBook.phoneIndex + ")";
+			String name = "";
+			String phoneNumber = "";
+			
+			System.out.print("name : ");
+			name = scan.next();
+			System.out.print("phone : ");
+			phoneNumber = scan.next();
+			valuesForAddition = "values("+id+", "+name+", "+phoneNumber+", "+index+")";
 		}
 		else if(state == SCHEDULE){
-			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
-			valuesForAddition = "values("
-								+ valuesForSchedule.id + ", "
-								+ valuesForSchedule.date + ", "
-								+ valuesForSchedule.description + ", "
-								+ valuesForSchedule.scheduleIndex + ") ";
+			Date date;
+			int year, month, day;
+			String description = "";
+			
+			System.out.print("date : ");
+			year = scan.nextInt();
+			month = scan.nextInt();
+			day = scan.nextInt();
+			date = new Date(year, month, day);
+			
+			System.out.print("description : ");
+			description = scan.nextLine();
+			valuesForAddition = "values("+id+", "+date+", "+description+", "+index+") ";
 		}
 		else if(state == NOTE){
-			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
-			valuesForAddition = "values(" 
-								+ valuesForNote.id + ", "
-								+ valuesForNote.note + ", "
-								+ valuesForNote.noteIndex + ")";
+			String note = "";
+			
+			System.out.print("["+index+"] note : " );
+			note = scan.nextLine();
+			valuesForAddition = "values("+id+", "+note+", "+index+")";;
 		}
 		else{
 			//exception
 		}
-		return valuesForAddition;
 	}
 	
+<<<<<<< HEAD
 	private String makeIndexName(int state){
 		String indexName = "";
 		if(state == PHONEBOOK)
@@ -210,10 +219,19 @@ class InputFromUser{
 			// Exception
 		}
 	}
+=======
+	private String makeStatementForAddition(int state, int index){
+		
+		setIndex(index);
+		setDatabaseName(state);
+		setDatabaseAttributesForAddition(state);
+		setValuesForAddition(state);
+		sqlStatement = "INSERT INTO " + databaseName + databaseAttributes + valuesForAddition;
+		return sqlStatement;
+	}
+	
+>>>>>>> parent of 32eb892... Statement
 }
-
-
-
 
 
 
