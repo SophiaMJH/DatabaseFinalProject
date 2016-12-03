@@ -30,11 +30,11 @@ public class StatementForMenu {
 	private String makeDatabaseName(int state){
 		String databaseName = "";
 		if(state == PHONEBOOK)
-			databaseName = "PhoneBook";
+			databaseName = "phonebook";
 		else if(state == SCHEDULE)
-			databaseName = "Schedule";
+			databaseName = "schedule";
 		else if(state == NOTE)
-			databaseName = "Note";
+			databaseName = "note";
 		else
 			;//Exception
 		return databaseName;
