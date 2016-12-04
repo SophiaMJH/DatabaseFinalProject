@@ -14,16 +14,17 @@ public class StatementForMenu {
 		return sqlStatement;
 	}
 	
-	private String makeStatementforViewing(int state){
+	private String makeStatementForViewing(int state){
 		String sqlStatement;
 		sqlStatement = "SELECT * FROM " + makeDatabaseName(state);
 		return sqlStatement;
 	}
 	
-	private String deleteStatementforViewing(int state, int selectedIndex){
+	private String makeStatementForDeletion(int state){
 		String sqlStatement;
 		sqlStatement = "DELETE FROM " + makeDatabaseName(state)
-						+ "WHERE " + makeIndexName(state) + "=" + selectedIndex;
+						+ "WHERE " + makeIndexName(state) + "=" 
+						+ selectIndexToDelete(state);
 		return sqlStatement;
 	}
 	
@@ -99,6 +100,12 @@ public class StatementForMenu {
 		else
 			;
 		return indexName;
+	}
+	
+	private int selectIndexToDelete(int state){
+		InputFromUser inputFromUser = new InputFromUser();
+		int selectedIndex=inputFromUser.queryForindexNumber(state);
+		return selectedIndex;
 	}
 
 }
