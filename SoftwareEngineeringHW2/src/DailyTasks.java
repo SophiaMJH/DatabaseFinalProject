@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 
+<<<<<<< HEAD
 class Statement{
 	
 	final int PHONEBOOK = 1;
@@ -233,6 +234,27 @@ class InputFromUser{
 >>>>>>> parent of 32eb892... Statement
 }
 
+=======
+class PhoneBook{
+	String id;
+	String name;
+	String phoneNumber;
+	int phoneIndex;
+}
+
+class Schedule{
+	String id;
+	Date date;
+	String description;
+	int scheduleIndex;
+}
+
+class Note{
+	String id;
+	String note;
+	int noteIndex;
+}
+>>>>>>> origin/master
 
 
 public class DailyTasks {
