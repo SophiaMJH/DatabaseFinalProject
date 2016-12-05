@@ -4,6 +4,7 @@ import java.io.*;
 
 public class Menu {
 	
+	
 
 	public static void showMenu(){
 		
@@ -50,8 +51,13 @@ public class Menu {
 			
 			System.out.println("메뉴 선택: ");
 			Scanner scan = new Scanner(System.in);
-			String select = scan.toString();
+			String select = scan.nextLine();
 			
+			}
 		}
+	
+	public  void backMenu(){
+		
 	}
-}
+	
+	}
