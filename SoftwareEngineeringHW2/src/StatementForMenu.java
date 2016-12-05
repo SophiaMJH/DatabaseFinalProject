@@ -4,9 +4,9 @@ public class StatementForMenu {
 	final int PHONEBOOK = 1;
 	final int SCHEDULE = 2;
 	final int NOTE = 3;
+	public String sqlStatement="";
 
 	private String makeStatementForAddition(int state, int maxIndex){
-		String sqlStatement;
 		sqlStatement = "INSERT INTO " 
 						+ makeDatabaseName(state)
 						+ makeAttributesStringForAddition(state)
@@ -14,16 +14,15 @@ public class StatementForMenu {
 		return sqlStatement;
 	}
 	
-	private String makeStatementforViewing(int state){
-		String sqlStatement;
+	private String makeStatementForViewing(int state){
 		sqlStatement = "SELECT * FROM " + makeDatabaseName(state);
 		return sqlStatement;
 	}
 	
-	private String deleteStatementforViewing(int state, int selectedIndex){
-		String sqlStatement;
+	private String makeStatementForDeletion(int state){
 		sqlStatement = "DELETE FROM " + makeDatabaseName(state)
-						+ "WHERE " + makeIndexName(state) + "=" + selectedIndex;
+						+ "WHERE " + makeIndexName(state) + "=" 
+						+ selectIndexToDelete(state);
 		return sqlStatement;
 	}
 	
@@ -99,6 +98,12 @@ public class StatementForMenu {
 		else
 			;
 		return indexName;
+	}
+	
+	private int selectIndexToDelete(int state){
+		InputFromUser inputFromUser = new InputFromUser();
+		int selectedIndex=inputFromUser.queryForindexNumber(state);
+		return selectedIndex;
 	}
 
 }
