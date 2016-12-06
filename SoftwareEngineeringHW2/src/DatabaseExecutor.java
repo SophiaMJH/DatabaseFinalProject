@@ -12,53 +12,62 @@ public class DatabaseExecutor {
 	
 	//executeDatabase 함수를 어디서 호출하느냐에 따라 파라미터가 바뀌어야 할 듯!
 	//일단 파라미터 안쓰고 StatementForMenu객체에서 sql문 뽑아오는걸로 구현했음
-	public void executeDatabase(String statement){
+	private void executeDatabase(String statement) {
 		try{
-			StatementForMenu executeStatement=new StatementForMenu();
 			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
 												"root", "ComputerScience14*");
 			stmt=conn.createStatement();
-			String sql=executeStatement.sqlStatement;
-			char firstCharacter=sql.charAt(0);
-			if(firstCharacter=='S'){
-				rs=stmt.executeQuery(sql);
-				selectedFunction=VIEW;
-			}
-			else if(firstCharacter=='I'){
-				stmt.executeUpdate(sql);
-				selectedFunction=ADD;
-			}
-			else if(firstCharacter=='D'){
-				stmt.executeUpdate(sql);
-				selectedFunction=DELETE;
-			}
-			else System.out.println("DatabaseExecutor class error");
+			String sql = statement;
+			rs=stmt.executeQuery(sql);
 		}catch(Exception e){
 			System.out.println("DatabaseExecutor class error");
 		}
 	}
 	
 	//이것도 어디서 state랑 select넣어서 호출하는지 몰라서 일단 맘대로 구현했음
-	public void executeFunction(int state, int select) throws SQLException{
-		if(selectedFunction==ADD)
+	public void executeFunction(int mainMenu, int subMenu) throws SQLException {
+		if(subMenu==ADD) {
+			executeAddFunction(mainMenu);
 			return; // 가장 최근의 메뉴를 print
-		if(selectedFunction==VIEW){
-			if(state==1)
-				viewPhonebookTable();
-			else if(state==2)
-				viewScheduleTable();
-			else if(state==3)
-				viewNoteTable();
-			else
-				System.out.println("DatabaseExecutor class error");
 		}
-		if(selectedFunction==DELETE){
+		else if(subMenu==VIEW) {
+			executeViewFunction(mainMenu);
+		}
+		else if(subMenu==DELETE) {
+			executeDeleteFunction(mainMenu);
 			return; //가장 최근의 메뉴로 돌아간다.
 		}
-			
 	}
 	
-	private int viewPhonebookTable() throws SQLException{
+	private void executeAddFunction(int mainMenu) {
+		StatementForMenu executeStatement=new StatementForMenu();
+		int maxIndex = makeMaxIndexFromDatabase();
+		String sql = executeStatement.makeStatementForAddition(mainMenu, maxIndex+1);
+		executeDatabase(sql);
+	}
+
+	private void executeViewFunction(int mainMenu) throws SQLException {
+		if(mainMenu==1)
+			viewPhonebookTable();
+		else if(mainMenu==2)
+			viewScheduleTable();
+		else if(mainMenu==3)
+			viewNoteTable();
+		else
+			System.out.println("DatabaseExecutor class error");
+	}
+	
+	private void executeDeleteFunction(int mainMenu) {
+		InputFromUser indexSelectedByUser = new InputFromUser();
+		int selectedIndex = indexSelectedByUser.queryForindexNumber(mainMenu);
+		while(!isInDatabase(selectedIndex))
+			selectedIndex = indexSelectedByUser.reQueryForindexNumber(mainMenu);
+		StatementForMenu executeStatement=new StatementForMenu();
+		String sql = executeStatement.makeStatementForDeletion(mainMenu, selectedIndex);
+		executeDatabase(sql);
+	}
+	
+	private int viewPhonebookTable() throws SQLException {
 		Scanner scan=new Scanner(System.in);
 		String id,name,phoneNumber,userRequest;
 		int phoneIndex;
@@ -73,19 +82,19 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
-		while(true){
+		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
 			if(userRequest=="B") return 0;
 		}
 	}
 	
-	private int viewScheduleTable() throws SQLException{
+	private int viewScheduleTable() throws SQLException {
 		Scanner scan=new Scanner(System.in);
 		String id,date,description,userRequest;
 		int scheduleIndex;
 		System.out.print("id\t"+"date\t"+"description\t"+"index\n");
-		while(rs.next()){
+		while(rs.next()) {
 			id=rs.getString("id");
 			date=rs.getString("date");
 			description=rs.getString("description");
@@ -94,19 +103,19 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
-		while(true){
+		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
 			if(userRequest=="B") return 0;
 		}
 	}
 	
-	private int viewNoteTable() throws SQLException{
+	private int viewNoteTable() throws SQLException {
 		Scanner scan=new Scanner(System.in);
 		String id,note,userRequest;
 		int noteIndex;
 		System.out.print("id\t"+"note\t"+"index\n");
-		while(rs.next()){
+		while(rs.next()) {
 			id=rs.getString("id");
 			note=rs.getString("note");
 			noteIndex=rs.getInt("phoneIndex");
@@ -114,11 +123,20 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
-		while(true){
+		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
 			if(userRequest=="B") return 0;
 		}
+	}
+	
+	private int  makeMaxIndexFromDatabase() {
+		
+		
+	}
+	
+	private boolean inInDatabase(int index) {
+		
 	}
 }
 

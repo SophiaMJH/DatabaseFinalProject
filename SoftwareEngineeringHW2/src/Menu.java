@@ -1,11 +1,10 @@
 import java.util.*;
 import java.io.*;
+import java.sql.SQLException;
 
 
 public class Menu {
 	
-	
-
 	public static void showMenu(){
 		
 		System.out.println("1. Change the user account ");
@@ -16,17 +15,14 @@ public class Menu {
 		
 		System.out.println("메뉴 선택: ");
 		
-		Scanner scan = new Scanner(System.in);
-		int state = scan.nextInt();
-		
-		showMenu(state);
+		selectAndExecuteMainMenu();
 	}
 
-	public static void showMenu(int state){
+	public static void showMenu(int mainMenu){
 		
-		while(state>=1 && state<=5){
+		while(mainMenu>=1 && mainMenu<=5){
 			
-			switch(state){
+			switch(mainMenu){
 			case 1: changeAccount(); break;
 			case 2: 
 					System.out.println("1. Add a new address ");
@@ -48,13 +44,25 @@ public class Menu {
 					
 			case 5: break;
 			}
-			
-			System.out.println("메뉴 선택: ");
-			Scanner scan = new Scanner(System.in);
-			String select = scan.nextLine();
-			
-			}
+			selectAndExecuteSubMenu(mainMenu);
 		}
+	}
+		
+	public static void selectAndExecuteMainMenu() {
+		System.out.println("메뉴 선택: ");
+		Scanner scan = new Scanner(System.in);
+		int select = scan.nextInt();
+		showMenu(select);
+	}
+	
+	
+	public static void selectAndExecuteSubMenu(int mainMenu) throws SQLException {
+		System.out.println("메뉴 선택: ");
+		Scanner scan = new Scanner(System.in);
+		int select = scan.nextInt();
+		DatabaseExecutor executeSelectedMenu = new DatabaseExecutor();
+		executeSelectedMenu.executeFunction(mainMenu, select);	
+	}
 	
 	public  void backMenu(){
 		
