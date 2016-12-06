@@ -4,61 +4,59 @@ public class StatementForMenu {
 	final int PHONEBOOK = 1;
 	final int SCHEDULE = 2;
 	final int NOTE = 3;
-	public String sqlStatement="";
+	private String sqlStatement="";
 
-	private String makeStatementForAddition(int state, int maxIndex){
+	public String makeStatementForAddition(int mainMenu, int maxIndex) {
 		sqlStatement = "INSERT INTO " 
-						+ makeDatabaseName(state)
-						+ makeAttributesStringForAddition(state)
-						+ makeValueStringForAddition(state, maxIndex);
+						+ makeDatabaseName(mainMenu)
+						+ makeAttributesStringForAddition(mainMenu)
+						+ makeValueStringForAddition(mainMenu, maxIndex);
 		return sqlStatement;
 	}
 	
-	private String makeStatementForViewing(int state){
-		sqlStatement = "SELECT * FROM " + makeDatabaseName(state);
+	private String makeStatementForViewing(int mainMenu) {
+		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu);
 		return sqlStatement;
 	}
 	
-	private String makeStatementForDeletion(int state){
-		sqlStatement = "DELETE FROM " + makeDatabaseName(state)
-						+ "WHERE " + makeIndexName(state) + "=" 
-						+ selectIndexToDelete(state);
+	String makeStatementForDeletion(int mainMenu, int index) {
+		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
+						+ "WHERE " + makeIndexName(mainMenu) + "=" 
+						+ Integer.toString(index);
 		return sqlStatement;
 	}
 	
-	private String makeDatabaseName(int state){
+	private String makeDatabaseName(int mainMenu) {
 		String databaseName = "";
-		if(state == PHONEBOOK)
+		if(mainMenu == PHONEBOOK)
 			databaseName = "phonebook";
-		else if(state == SCHEDULE)
+		else if(mainMenu == SCHEDULE)
 			databaseName = "schedule";
-		else if(state == NOTE)
+		else if(mainMenu == NOTE)
 			databaseName = "note";
 		else
 			;//Exception
 		return databaseName;
 	}
 	
-	private String makeAttributesStringForAddition(int state){
-		
+	private String makeAttributesStringForAddition(int mainMenu) {
 		String databaseAttributes = "";
-		if(state == PHONEBOOK)
+		if(mainMenu == PHONEBOOK)
 			databaseAttributes = "(id, name, phoneNumber, phoneIndex ) ";
-		else if(state == SCHEDULE)
+		else if(mainMenu == SCHEDULE)
 			databaseAttributes = "(id, date, description, scheduleIndex ) ";
-		else if(state == NOTE)
+		else if(mainMenu == NOTE)
 			databaseAttributes = "(id, note, noteIndex ) ";
 		else
 			;//Exception
 		return databaseAttributes;
 	}
 	
-	private String makeValueStringForAddition(int state, int maxIndex){
-		
+	private String makeValueStringForAddition(int mainMenu, int maxIndex) {
 		Scanner scan = new Scanner(System.in);
 		String valuesForAddition = "";
 		InputFromUser inputFromUser = new InputFromUser();
-		if(state == PHONEBOOK){
+		if(mainMenu == PHONEBOOK) {
 			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
 			valuesForAddition = "values("
 								+ valuesForPhoneBook.id + ", "
@@ -66,7 +64,7 @@ public class StatementForMenu {
 								+ valuesForPhoneBook.phoneNumber + ", "
 								+ valuesForPhoneBook.phoneIndex + ")";
 		}
-		else if(state == SCHEDULE){
+		else if(mainMenu == SCHEDULE) {
 			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
 			valuesForAddition = "values("
 								+ valuesForSchedule.id + ", "
@@ -74,36 +72,31 @@ public class StatementForMenu {
 								+ valuesForSchedule.description + ", "
 								+ valuesForSchedule.scheduleIndex + ") ";
 		}
-		else if(state == NOTE){
+		else if(mainMenu == NOTE) {
 			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
 			valuesForAddition = "values(" 
 								+ valuesForNote.id + ", "
 								+ valuesForNote.note + ", "
 								+ valuesForNote.noteIndex + ")";
 		}
-		else{
+		else {
 			//exception
 		}
 		return valuesForAddition;
 	}
 	
-	private String makeIndexName(int state){
+	private String makeIndexName(int mainMenu) {
 		String indexName = "";
-		if(state == PHONEBOOK)
+		if(mainMenu == PHONEBOOK)
 			indexName = "phoneIndex";
-		else if(state == SCHEDULE)
+		else if(mainMenu == SCHEDULE)
 			indexName = "scheduleIndex";
-		else if(state == NOTE)
+		else if(mainMenu == NOTE)
 			indexName = "noteIndex";
 		else
 			;
 		return indexName;
 	}
 	
-	private int selectIndexToDelete(int state){
-		InputFromUser inputFromUser = new InputFromUser();
-		int selectedIndex=inputFromUser.queryForindexNumber(state);
-		return selectedIndex;
-	}
 
 }
