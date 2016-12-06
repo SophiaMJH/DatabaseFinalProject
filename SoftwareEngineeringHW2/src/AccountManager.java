@@ -2,29 +2,37 @@ import java.util.*;
 import java.io.*;
 
 
-class Account{
-	String id;
-	String pw;
-	
+public class Account {
+	public String id;
+	private String pw;
+	//id,pw가 db에 있다고하면
 }
 
 
 public class AccountManager {
+	final int LOGIN=1;
+	final int CHANGE=2;
+	String inputId;
+	String inputPw;
 
-
-	private int login(string id, string pw){
+	private int login(string id, string pw) {
 		Scanner scan = new Scanner(System.in);
+		Account accountCheck= new Account();
 		
 		System.out.print("ID : ");
-		id = scan.nextLine();
+		inputId = scan.nextLine();
 		System.out.print("PW : ");
-		pw = scan.nextLine();	
+		inputPw= scan.nextLine();	
 		
-		//DB랑비교
-		
+		if(id == inputId && pw == inputPw) {
+			showMenu();
+		}
+		else if 
+			return login(id, pw);
 	}
 	
 	private void changeAccount(void){
+		//newid와 newpw를 받아서 ! 넣어줭!
 		
 		System.out.print("ID : ");
 		id = scan.nextLine();
@@ -32,7 +40,7 @@ public class AccountManager {
 		pw = scan.nextLine();
 		
 		
-		
+		//db연결이 시급
 		
 	}
 	
