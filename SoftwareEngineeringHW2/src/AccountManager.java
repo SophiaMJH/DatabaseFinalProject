@@ -2,10 +2,17 @@ import java.util.*;
 import java.io.*;
 
 
-public class Account {
-	public String id;
-	private String pw;
+class Account {
+	public static String id;
+	private static String pw;
 	//id,pw가 db에 있다고하면
+	
+	public static String getPw() {
+		return pw;
+	}
+	public static void setPw(String pw) {
+		Account.pw = pw;
+	}
 }
 
 
@@ -15,9 +22,9 @@ public class AccountManager {
 	String inputId;
 	String inputPw;
 
-	private int login(string id, string pw) {
+	private int login(String id, String pw) {
 		Scanner scan = new Scanner(System.in);
-		Account accountCheck= new Account();
+		//Account accountCheck= new Account();
 		
 		System.out.print("ID : ");
 		inputId = scan.nextLine();
@@ -25,19 +32,19 @@ public class AccountManager {
 		inputPw= scan.nextLine();	
 		
 		if(id == inputId && pw == inputPw) {
-			showMenu();
+			return 1;
 		}
-		else if 
+		else
 			return login(id, pw);
 	}
 	
-	private void changeAccount(void){
+	private void changeAccount(int C) {
 		//newid와 newpw를 받아서 ! 넣어줭!
-		
+		Scanner scan = new Scanner(System.in);
 		System.out.print("ID : ");
-		id = scan.nextLine();
-		System.our.print("PW : ");
-		pw = scan.nextLine();
+		Account.id = scan.nextLine();
+		System.out.print("PW : ");
+		Account.setPw(scan.nextLine());
 		
 		
 		//db연결이 시급
