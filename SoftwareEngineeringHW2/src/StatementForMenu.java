@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.*;
 
 public class StatementForMenu {
@@ -23,6 +24,27 @@ public class StatementForMenu {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
 						+ "WHERE " + makeIndexName(mainMenu) + "=" 
 						+ Integer.toString(index);
+		return sqlStatement;
+	}
+	public String makeMaxIndexString(int mainMenu){
+		String sqlStatement = "";
+		if(mainMenu == PHONEBOOK)
+			sqlStatement = "SELECT MAX(phoneIndex) FROM PhoneBook";
+		else if(mainMenu == SCHEDULE)
+			sqlStatement = "SELECT MAX(scheduleIndex) FROM Schedule";
+		else if(mainMenu == NOTE)
+			sqlStatement = "SELECT MAX(noteIndex) FROM Note";
+		return sqlStatement;
+	}
+	
+	public String makeIsInDatabaseString(int mainMenu){
+		String sqlStatement = "";
+		if(mainMenu == PHONEBOOK)
+			sqlStatement = "SELECT * FROM PhoneBook";
+		else if(mainMenu == SCHEDULE)
+			sqlStatement = "SELECT* FROM Schedule";
+		else if(mainMenu == NOTE)
+			sqlStatement = "SELECT * FROM Note";
 		return sqlStatement;
 	}
 	
@@ -98,5 +120,7 @@ public class StatementForMenu {
 		return indexName;
 	}
 	
+	
+
 
 }
