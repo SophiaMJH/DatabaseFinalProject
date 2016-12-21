@@ -38,7 +38,7 @@ public class AccountManager {
 			return login(id, pw);
 	}
 	
-	private void changeAccount(int C) {
+	public void changeAccount() {
 		//newid와 newpw를 받아서 ! 넣어줭!
 		Scanner scan = new Scanner(System.in);
 		System.out.print("ID : ");

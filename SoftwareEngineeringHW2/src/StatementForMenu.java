@@ -14,12 +14,12 @@ public class StatementForMenu {
 		return sqlStatement;
 	}
 	
-	private String makeStatementForViewing(int mainMenu) {
+	public String makeStatementForViewing(int mainMenu) {
 		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu);
 		return sqlStatement;
 	}
 	
-	String makeStatementForDeletion(int mainMenu, int index) {
+	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
 						+ "WHERE " + makeIndexName(mainMenu) + "=" 
 						+ Integer.toString(index);
