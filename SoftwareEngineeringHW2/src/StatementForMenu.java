@@ -51,11 +51,11 @@ public class StatementForMenu {
 	private String makeDatabaseName(int mainMenu) {
 		String databaseName = "";
 		if(mainMenu == PHONEBOOK)
-			databaseName = "phonebook";
+			databaseName = "PhoneBook";
 		else if(mainMenu == SCHEDULE)
-			databaseName = "schedule";
+			databaseName = "Schedule";
 		else if(mainMenu == NOTE)
-			databaseName = "note";
+			databaseName = "Note";
 		else
 			;//Exception
 		return databaseName;
@@ -64,11 +64,11 @@ public class StatementForMenu {
 	private String makeAttributesStringForAddition(int mainMenu) {
 		String databaseAttributes = "";
 		if(mainMenu == PHONEBOOK)
-			databaseAttributes = "(id, name, phoneNumber, phoneIndex ) ";
+			databaseAttributes = " (id, name, phoneNumber, phoneIndex) ";
 		else if(mainMenu == SCHEDULE)
-			databaseAttributes = "(id, date, description, scheduleIndex ) ";
+			databaseAttributes = " (id, date, description, scheduleIndex) ";
 		else if(mainMenu == NOTE)
-			databaseAttributes = "(id, note, noteIndex ) ";
+			databaseAttributes = " (id, note, noteIndex) ";
 		else
 			;//Exception
 		return databaseAttributes;
@@ -80,7 +80,7 @@ public class StatementForMenu {
 		InputFromUser inputFromUser = new InputFromUser();
 		if(mainMenu == PHONEBOOK) {
 			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
-			valuesForAddition = "values("
+			valuesForAddition = "VALUES ("
 								+ valuesForPhoneBook.id + ", "
 								+ valuesForPhoneBook.name +", "
 								+ valuesForPhoneBook.phoneNumber + ", "
@@ -88,15 +88,15 @@ public class StatementForMenu {
 		}
 		else if(mainMenu == SCHEDULE) {
 			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
-			valuesForAddition = "values("
+			valuesForAddition = "VALUES ("
 								+ valuesForSchedule.id + ", "
 								+ valuesForSchedule.date + ", "
 								+ valuesForSchedule.description + ", "
-								+ valuesForSchedule.scheduleIndex + ") ";
+								+ valuesForSchedule.scheduleIndex + ")";
 		}
 		else if(mainMenu == NOTE) {
 			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
-			valuesForAddition = "values(" 
+			valuesForAddition = "VALUES (" 
 								+ valuesForNote.id + ", "
 								+ valuesForNote.note + ", "
 								+ valuesForNote.noteIndex + ")";
@@ -120,7 +120,4 @@ public class StatementForMenu {
 		return indexName;
 	}
 	
-	
-
-
 }
