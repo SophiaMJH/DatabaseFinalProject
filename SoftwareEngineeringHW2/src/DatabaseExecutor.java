@@ -99,7 +99,7 @@ public class DatabaseExecutor {
 				flag = false;
 		}
 	}
-	///////////////////////////////////////////////////출력값 줄맞추기 해야돼!!!!!!!!!!!!!!!!!!!!
+	
 	private void viewScheduleTable(String sql) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		String id,date,description;
@@ -109,13 +109,13 @@ public class DatabaseExecutor {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
-		System.out.print("id\t"+"date\t"+"description\t"+"index\n");
+		System.out.println("id\t"+"date\t\t"+"description(index)");
 		while(rs.next()) {
 			id = rs.getString("id");
 			date = rs.getString("date");
 			description = rs.getString("description");
 			scheduleIndex = rs.getInt("scheduleIndex");
-			System.out.print(id+"\t"+date+"\t\t\t"+description+"\t"+scheduleIndex+"\n");
+			System.out.print(id+"\t"+date+"\t"+description+"("+scheduleIndex+")\n");
 		}
 		rs.close();
 		stmt.close();
@@ -132,12 +132,12 @@ public class DatabaseExecutor {
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
-		System.out.print("id\t"+"note\t"+"index\n");
+		System.out.print("id\t"+"note(index)\n");
 		while(rs.next()) {
 			id = rs.getString("id");
 			note = rs.getString("note");
 			noteIndex = rs.getInt("noteIndex");
-			System.out.print(id+"\t"+note+"\t"+noteIndex+"\n");
+			System.out.print(id+"\t"+note+"("+noteIndex+")\n");
 		}
 		rs.close();
 		stmt.close();
@@ -165,7 +165,6 @@ public class DatabaseExecutor {
 		return max;
 	}
 
-	//selected 인덱스 받아왔음
 	private boolean isInDatabase(int index, int mainMenu) throws SQLException  {
 		boolean flag = false;
 		String indexName = setIndexName(mainMenu);
@@ -179,7 +178,6 @@ public class DatabaseExecutor {
 			if(rs.getInt(indexName) == index) 
 				flag = true;
 		}
-		System.out.println(flag);///////////////////////////////////////////////여기도 지워라
 		return flag;
 	}
 	
