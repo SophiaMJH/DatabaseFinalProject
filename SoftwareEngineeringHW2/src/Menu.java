@@ -57,7 +57,7 @@ class Menu{
 	
 	private int showAndSelectSubMenu(int mainState) {
 		Scanner scan = new Scanner(System.in);
-		for(int i=0; i<4; i++){
+		for(int i = 0; i < 4; i++){
 			System.out.println(subMenus[mainState][i]);
 		}
 		System.out.print("메뉴 선택 : ");

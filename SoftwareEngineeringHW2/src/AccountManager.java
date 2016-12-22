@@ -19,8 +19,6 @@ class Account {
 
 
 public class AccountManager {
-	final int LOGIN=1;
-	final int CHANGE=2;
 	String inputId;
 	String inputPw;
 	Account account  = new Account();
