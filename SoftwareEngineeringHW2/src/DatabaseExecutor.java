@@ -16,7 +16,7 @@ public class DatabaseExecutor {
 
 	private void executeDatabase(String statement) throws SQLException {
 		try{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 												"root", "ComputerScience14*");
 			stmt = conn.createStatement();
 			String sql = statement;
@@ -77,7 +77,7 @@ public class DatabaseExecutor {
 		Scanner scan=new Scanner(System.in);
 		String id,name,phoneNumber,userRequest;
 		int phoneIndex;
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask", "root", "ComputerScience14*");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -103,7 +103,7 @@ public class DatabaseExecutor {
 		Scanner scan = new Scanner(System.in);
 		String id,date,description,userRequest;
 		int scheduleIndex;
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask", "root", "ComputerScience14*");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		
@@ -129,7 +129,7 @@ public class DatabaseExecutor {
 		Scanner scan = new Scanner(System.in);
 		String id,note,userRequest;
 		int noteIndex;
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask", "root", "ComputerScience14*");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
 		

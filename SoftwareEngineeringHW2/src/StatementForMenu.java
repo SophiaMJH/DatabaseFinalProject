@@ -80,26 +80,26 @@ public class StatementForMenu {
 		InputFromUser inputFromUser = new InputFromUser();
 		if(mainMenu == PHONEBOOK) {
 			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
-			valuesForAddition = "VALUES ("
-								+ valuesForPhoneBook.id + ", "
-								+ valuesForPhoneBook.name +", "
-								+ valuesForPhoneBook.phoneNumber + ", "
-								+ valuesForPhoneBook.phoneIndex + ")";
+			valuesForAddition = "VALUES ('"
+								+ valuesForPhoneBook.id + "', '"
+								+ valuesForPhoneBook.name +"', '"
+								+ valuesForPhoneBook.phoneNumber + "', '"
+								+ valuesForPhoneBook.phoneIndex + "')";
 		}
 		else if(mainMenu == SCHEDULE) {
 			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
-			valuesForAddition = "VALUES ("
-								+ valuesForSchedule.id + ", "
-								+ valuesForSchedule.date + ", "
-								+ valuesForSchedule.description + ", "
-								+ valuesForSchedule.scheduleIndex + ")";
+			valuesForAddition = "VALUES ('"
+								+ valuesForSchedule.id + "', '"
+								+ valuesForSchedule.date + "', '"
+								+ valuesForSchedule.description + "', '"
+								+ valuesForSchedule.scheduleIndex + "')";
 		}
 		else if(mainMenu == NOTE) {
 			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
-			valuesForAddition = "VALUES (" 
-								+ valuesForNote.id + ", "
-								+ valuesForNote.note + ", "
-								+ valuesForNote.noteIndex + ")";
+			valuesForAddition = "VALUES ('" 
+								+ valuesForNote.id + "', '"
+								+ valuesForNote.note + "', '"
+								+ valuesForNote.noteIndex + "')";
 		}
 		else {
 			//exception

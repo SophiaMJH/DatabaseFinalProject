@@ -9,6 +9,9 @@ class Account {
 	public static String getId() {
 		return id;
 	}
+	public static String getPw() {
+		return pw;
+	}
 	public static void setId(String inputId) {
 		id = inputId;
 	}
@@ -43,10 +46,11 @@ public class AccountManager {
 	
 	public void changeAccount() throws SQLException {
 		Scanner scan = new Scanner(System.in);
+		String originID=account.getId();
 		while(true){
 			System.out.print("ID : ");
 			String inputId = scan.nextLine();
-			if(!isIdInDatabase(inputId))
+			if(isIdInDatabase(inputId))
 				System.out.println("중복된 아이디입니다");
 			else{
 				account.setId(inputId);
@@ -54,7 +58,10 @@ public class AccountManager {
 			}
 		}
 		System.out.print("PW : ");
-			Account.setPw(scan.nextLine());
+		Account.setPw(scan.nextLine());
+		String changeID=account.getId();
+		String changePW=account.getPw();
+		applyChangeAccountToDB(originID, changeID, changePW);
 		
 	}
 	
@@ -63,8 +70,8 @@ public class AccountManager {
 		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 					"root", "ComputerScience14*");
 		 Statement stmt = conn.createStatement();
-		 String sql = "select * from member where id=" + inputId + 
-				      " and password=" + inputPW;
+		 String sql = "select * from member where id='" + inputId + 
+				      "' and pw='" + inputPW +"'";
 		 ResultSet rs = stmt.executeQuery(sql);
 		 if(rs.next()) {
 			 rs.close();
@@ -81,12 +88,13 @@ public class AccountManager {
 		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 					"root", "ComputerScience14*");
 		 Statement stmt = conn.createStatement();
-		 String sql = "select * from member where id=" + inputId;
+		 String sql = "select * from member where id='" + inputId + "'";
 		 ResultSet rs = stmt.executeQuery(sql);
 		 if(rs.next()) {
 			 rs.close();
 			 stmt.close();
 			 conn.close();
+			 flag=true;
 		 }
 		 rs.close();
 		 stmt.close();
@@ -94,6 +102,13 @@ public class AccountManager {
 		 return flag;
 	}
 	
+	private void applyChangeAccountToDB(String idBefore, String idAfter, String pw) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update member set id='" + idAfter + "', pw='" + pw + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+	}
 
 	
 }

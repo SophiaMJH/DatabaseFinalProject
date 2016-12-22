@@ -44,6 +44,8 @@ public class DailyTasks {
 	public static void main(String[] args) throws SQLException {
 		AccountManager accountManager = new AccountManager();
 		accountManager.login();
+		Menu startProgram = new Menu();
+		startProgram.showMainMenu();
 
 	}
 
