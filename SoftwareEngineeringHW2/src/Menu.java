@@ -9,11 +9,14 @@ class Menu{
                           "3. Manage the user’s schedule",
                           "4. Manage the user’s notes",
                           "5. Logout"};
-	String[][] subMenus = {{},{}, {"1. Add a new address", "2. View all address", "3. Delete an existing address", "4.Quit"},
-	                              {"1. Add a new schedule", "2. View all schedules","3. Delete an existing schedules", "4.Quit"},
-                                  {"1. Create a new note", "2. view all note",  "3. Delete an existing note", "4.Quit"}};
+	String[][] subMenus = {{},{}, {"1. Add a new address", "2. View all address",
+                                   "3. Delete an existing address", "4.Quit"},
+	                              {"1. Add a new schedule", "2. View all schedules",
+                                   "3. Delete an existing schedules", "4.Quit"},
+                                  {"1. Create a new note", "2. view all note",
+                                   "3. Delete an existing note", "4.Quit"}};
 	int mainState;
-	int subState;
+	int subMenu;
 	
 	public void showMenu() throws SQLException {
 		Scanner scan = new Scanner(System.in);
@@ -30,39 +33,23 @@ class Menu{
 		}
 	}
 
-	private void showMenu(int mainState) throws SQLException {
+	private void showMenu(int mainMenu) throws SQLException {
 		Scanner scan = new Scanner(System.in);
-		switch(mainState){
+		switch(mainMenu){
 			case 1 : 
-				AccountManager am = new AccountManager();
-				am.changeAccount();
+				AccountManager accountManager = new AccountManager();
+				accountManager.changeAccount();
 				break;
 			
-			case 2 :
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
+			case 2 : case 3 : case 4 :
+				while(subMenu != 4){
+					subMenu = showSubMenu(mainMenu);
+					if(subMenu == 4)
 						break;
-					else
-						callPhoneBookService(subState);
-				}
-			
-			case 3 :
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
-						break;
-					else
-						callScheduleService(subState);
-				}
-			
-			case 4 : 
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
-						break;
-					else
-						callNoteService(subState);
+					else{
+						DatabaseExecutor databaseExecutor = new DatabaseExecutor();
+						databaseExecutor.executeFunction(mainMenu, subMenu);
+					}
 				}
 		}
 		
@@ -74,44 +61,8 @@ class Menu{
 			System.out.println(subMenus[mainState][i]);
 		}
 		System.out.print("메뉴 선택 : ");
-		subState = scan.nextInt();
-		return subState;
+		subMenu = scan.nextInt();
+		return subMenu;
 	}
 
-	private void callPhoneBookService(int subState) {
-		switch(subState){
-			case 1 :
-				;
-			case 2 :
-				;
-			case 3 :
-				;
-		}
-	}
-	
-	private void callScheduleService(int subState) {
-		switch(subState){
-			case 1 :
-				;
-			case 2 :
-				;
-			case 3 :
-				;
-		}
-	}
-	
-	private void callNoteService(int subState) {
-		switch(subState){
-			case 1 :
-				;
-			case 2 :
-				;
-			case 3 :
-				;
-		}
-	}
-	
-	public void backMenu() {
-		;
-	}
 }
