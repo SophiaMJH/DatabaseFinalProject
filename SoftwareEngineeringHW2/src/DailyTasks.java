@@ -1,5 +1,6 @@
 import java.util.*;
 import java.io.*;
+import java.sql.SQLException;
 
 
 class PhoneBook{
@@ -7,6 +8,11 @@ class PhoneBook{
 	String name;
 	String phoneNumber;
 	int phoneIndex;
+	
+	PhoneBook() {
+		Account account = new Account();
+		id = account.getId();
+	}
 }
 
 class Schedule{
@@ -14,19 +20,30 @@ class Schedule{
 	Date date;
 	String description;
 	int scheduleIndex;
+	
+	Schedule() {
+		Account account = new Account();
+		id = account.getId();
+	}
 }
 
 class Note{
 	String id;
 	String note;
 	int noteIndex;
+	
+	Note() {
+		Account account = new Account();
+		id = account.getId();
+	}
 }
 
 
 public class DailyTasks {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws SQLException {
+		AccountManager accountManager = new AccountManager();
+		accountManager.login();
 
 	}
 

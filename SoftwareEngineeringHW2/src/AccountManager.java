@@ -23,7 +23,7 @@ public class AccountManager {
 	String inputPw;
 	Account account  = new Account();
 
-	private void login(String id, String pw) throws SQLException {
+	public void login() throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		while(true){
 			System.out.print("ID : ");

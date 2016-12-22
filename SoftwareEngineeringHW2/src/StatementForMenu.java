@@ -22,7 +22,7 @@ public class StatementForMenu {
 	
 	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
-						+ "WHERE " + makeIndexName(mainMenu) + "=" 
+						+ " WHERE " + makeIndexName(mainMenu) + "=" 
 						+ Integer.toString(index);
 		return sqlStatement;
 	}
@@ -51,7 +51,7 @@ public class StatementForMenu {
 	private String makeDatabaseName(int mainMenu) {
 		String databaseName = "";
 		if(mainMenu == PHONEBOOK)
-			databaseName = "phoneBook";
+			databaseName = "phonebook";
 		else if(mainMenu == SCHEDULE)
 			databaseName = "schedule";
 		else if(mainMenu == NOTE)
