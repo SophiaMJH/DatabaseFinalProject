@@ -10,7 +10,7 @@ class PhoneBook{
 }
 
 class Schedule{
-	Date date;
+	String date;
 	String description;
 	int scheduleIndex;
 }

@@ -19,15 +19,11 @@ public class InputFromUser {
 	}
 	
 	public Schedule queryAndSetSchedule(int index) throws ParseException {
-		
 		Scanner scan = new Scanner(System.in);
 		Schedule scheduleForAddition = new Schedule();
-		int year, month, day;
-		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy mm dd");
 		System.out.print("date : ");
-		String dateString = scan.nextLine();
-		scheduleForAddition.date = format.parse(dateString);
-		System.out.println("description : ");
+		scheduleForAddition.date = scan.nextLine();
+		System.out.print("description : ");
 		scheduleForAddition.description = scan.nextLine();
 		scheduleForAddition.scheduleIndex = index;
 		return scheduleForAddition;
