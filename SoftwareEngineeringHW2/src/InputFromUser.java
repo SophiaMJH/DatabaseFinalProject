@@ -45,16 +45,16 @@ public class InputFromUser {
 		return noteForAddition;
 	}
 	
-	public int queryForindexNumber(int state) {
+	public int queryForindexNumber(int mainMenu) {
 		Scanner scan = new Scanner(System.in);
 		int selectedIndex;
-		if(state == PHONEBOOK) {
+		if(mainMenu == PHONEBOOK) {
 			System.out.print("지우고 싶은 사람의 인덱스를 입력하세요: ");
 		}
-		else if(state == SCHEDULE) {
+		else if(mainMenu == SCHEDULE) {
 			System.out.print("지우길 원하는 스케줄 인덱스를 입력해 주세요: ");
 		}
-		else if(state == NOTE) {
+		else if(mainMenu == NOTE) {
 			System.out.print("지우길 원하는 노트인덱스를 입력해 주세요 : ");
 		}
 		else{
@@ -65,16 +65,16 @@ public class InputFromUser {
 	}
 	
 	
-	public int reQueryForindexNumber(int state) {
+	public int reQueryForindexNumber(int mainMenu) {
 		Scanner scan = new Scanner(System.in);
 		int selectedIndex;
-		if(state == PHONEBOOK) {
+		if(mainMenu == PHONEBOOK) {
 			System.out.print("번호 인덱스를 다시 입력해주세요 : ");
 		}
-		else if(state == SCHEDULE) {
+		else if(mainMenu == SCHEDULE) {
 			System.out.print("스케줄 인덱스를 다시 입력해 주세요 : ");
 		}
-		else if(state == NOTE) {
+		else if(mainMenu == NOTE) {
 			System.out.print("노트인덱스를 다시 입력해 주세요 : ");
 		}
 		else{
