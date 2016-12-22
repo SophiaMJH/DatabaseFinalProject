@@ -18,7 +18,7 @@ class Menu{
 	int mainState;
 	int subMenu;
 	
-	public void showMenu() throws SQLException {
+	public void showMainMenu() throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		mainState = 0;
 		while(mainState != 5){
@@ -29,11 +29,11 @@ class Menu{
 			mainState=scan.nextInt();
 			if(mainState == 5)
 				break;
-			showMenu(mainState);
+			executeMenu(mainState);
 		}
 	}
 
-	private void showMenu(int mainMenu) throws SQLException {
+	private void executeMenu(int mainMenu) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		switch(mainMenu){
 			case 1 : 
@@ -43,7 +43,7 @@ class Menu{
 			
 			case 2 : case 3 : case 4 :
 				while(subMenu != 4){
-					subMenu = showSubMenu(mainMenu);
+					subMenu = showAndSelectSubMenu(mainMenu);
 					if(subMenu == 4)
 						break;
 					else{
@@ -55,7 +55,7 @@ class Menu{
 		
 	}
 	
-	private int showSubMenu(int mainState) {
+	private int showAndSelectSubMenu(int mainState) {
 		Scanner scan = new Scanner(System.in);
 		for(int i=0; i<4; i++){
 			System.out.println(subMenus[mainState][i]);
