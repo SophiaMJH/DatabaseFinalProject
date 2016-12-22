@@ -14,7 +14,7 @@ public class DatabaseExecutor {
 	ResultSet rs;
 	
 
-	private void executeDatabase(String statement) {
+	private void executeDatabase(String statement) throws SQLException {
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
 												"root", "ComputerScience14*");
@@ -24,6 +24,9 @@ public class DatabaseExecutor {
 		}catch(Exception e){
 			System.out.println("DatabaseExecutor class error");
 		}
+		rs.close();
+		stmt.close();
+		conn.close();
 	}
 	
 	public void executeFunction(int mainMenu, int subMenu) throws SQLException {
@@ -88,6 +91,7 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
+		conn.close();
 		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest = scan.nextLine();
@@ -113,6 +117,7 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
+		conn.close();
 		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
@@ -137,6 +142,7 @@ public class DatabaseExecutor {
 		}
 		rs.close();
 		stmt.close();
+		conn.close();
 		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();

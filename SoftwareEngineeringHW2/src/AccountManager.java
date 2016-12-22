@@ -60,29 +60,38 @@ public class AccountManager {
 	
 	private boolean isIdPwInDatabase(String inputId, String inputPW) throws SQLException {
 		boolean flag = false;
-		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 					"root", "ComputerScience14*");
 		 Statement stmt = conn.createStatement();
 		 String sql = "select * from member where id=" + inputId + 
-				      "and password=" + inputPW;
+				      " and password=" + inputPW;
 		 ResultSet rs = stmt.executeQuery(sql);
 		 if(rs.next()) {
+			 rs.close();
+			 stmt.close();
 			 flag = true;
 		 }
-		return flag;
+		 rs.close();
+		 stmt.close();
+		 return flag;
 	}
 	
 	private boolean isIdInDatabase(String inputId) throws SQLException {
 		boolean flag = false;
-		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 					"root", "ComputerScience14*");
 		 Statement stmt = conn.createStatement();
 		 String sql = "select * from member where id=" + inputId;
 		 ResultSet rs = stmt.executeQuery(sql);
 		 if(rs.next()) {
-			 flag = true;
+			 rs.close();
+			 stmt.close();
+			 conn.close();
 		 }
-		return flag;
+		 rs.close();
+		 stmt.close();
+		 conn.close();
+		 return flag;
 	}
 	
 
