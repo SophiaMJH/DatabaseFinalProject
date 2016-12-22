@@ -3,9 +3,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class StatementForMenuTest {
-	final int PHONEBOOK = 1;
-	final int SCHEDULE = 2;
-	final int NOTE = 3;
+	final int PHONEBOOK = 2;
+	final int SCHEDULE = 3;
+	final int NOTE = 4;
 	
 	@Test
 	public void testMakeStatementForViewing() {
@@ -34,6 +34,43 @@ public class StatementForMenuTest {
 		String result = "SELECT* FROM schedule";
 		assertEquals(statementForMenu.makeIsInDatabaseString(SCHEDULE), result);
 	}
-
+	
+	
+	@Test
+	public void makeIndextest() {
+		assertNull(makeIndexName(5));
+	}
+	
+	@Test
+	public void makeDatabaseNametest(){
+		assertTrue(makeDatabaseName(4)=="note");
+	}
+	
+	
+	private String makeIndexName(int mainMenu) {
+		String indexName = null;
+		if(mainMenu == PHONEBOOK)
+			indexName = "phoneIndex";
+		else if(mainMenu == SCHEDULE)
+			indexName = "scheduleIndex";
+		else if(mainMenu == NOTE)
+			indexName = "noteIndex";
+		else
+			;
+		return indexName;
+	}
+	
+	private String makeDatabaseName(int mainMenu) {
+		String databaseName = "";
+		if(mainMenu == PHONEBOOK)
+			databaseName = "phonebook";
+		else if(mainMenu == SCHEDULE)
+			databaseName = "schedule";
+		else if(mainMenu == NOTE)
+			databaseName = "note";
+		else
+			;//Exception
+		return databaseName;
+	}
 
 }
