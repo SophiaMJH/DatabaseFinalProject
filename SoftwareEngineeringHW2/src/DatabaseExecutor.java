@@ -3,30 +3,25 @@ import java.sql.*;
 
 public class DatabaseExecutor {
 	private int selectedFunction;
+	private String back="B";
 	final int ADD = 1;
 	final int VIEW = 2;
 	final int DELETE = 3;
-	final int PHONEBOOK = 1;
-	final int SCHEDULE = 2;
-	final int NOTE = 3;
+	final int PHONEBOOK = 2;
+	final int SCHEDULE = 3;
+	final int NOTE = 4;
 	Connection conn;
 	Statement stmt;
 	ResultSet rs;
 	
 
 	private void executeDatabase(String statement) throws SQLException {
-		try{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 												"root", "ComputerScience14*");
-			stmt = conn.createStatement();
-			String sql = statement;
-			rs = stmt.executeQuery(sql);
-		}catch(Exception e){
-			System.out.println("DatabaseExecutor class error");
-		}
-		rs.close();
-		stmt.close();
-		conn.close();
+		stmt = conn.createStatement();
+		String sql = statement;
+		System.out.println(sql); /////////////////////////////////////여기 지워라
+		stmt.executeUpdate(sql);
 	}
 	
 	public void executeFunction(int mainMenu, int subMenu) throws SQLException {
@@ -46,8 +41,11 @@ public class DatabaseExecutor {
 	private void executeAddFunction(int mainMenu) throws SQLException {
 		StatementForMenu executeStatement = new StatementForMenu();
 		int maxIndex = makeMaxIndexFromDatabase(mainMenu);
-		String sql = executeStatement.makeStatementForAddition(mainMenu, maxIndex+1);
+		String sql = executeStatement.makeStatementForAddition(mainMenu, maxIndex);
 		executeDatabase(sql);
+		rs.close();
+		stmt.close();
+		conn.close();
 	}
 
 	private void executeViewFunction(int mainMenu) throws SQLException {
@@ -71,16 +69,20 @@ public class DatabaseExecutor {
 		StatementForMenu executeStatement=new StatementForMenu();
 		String sql = executeStatement.makeStatementForDeletion(mainMenu, selectedIndex);
 		executeDatabase(sql);
+		rs.close();
+		stmt.close();
+		conn.close();
 	}
 	
-	private int viewPhonebookTable(String sql) throws SQLException {
+	private void viewPhonebookTable(String sql) throws SQLException {
 		Scanner scan=new Scanner(System.in);
 		String id,name,phoneNumber,userRequest;
 		int phoneIndex;
+		boolean flag=true;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
+		System.out.println(sql); ////////////////////////////////////////////여기 지워라
 		rs = stmt.executeQuery(sql);
-		
 		System.out.print("id\t"+"name\t"+"phoneNumber\t"+"index\n");
 		while(rs.next()){
 			id = rs.getString("id");
@@ -92,17 +94,19 @@ public class DatabaseExecutor {
 		rs.close();
 		stmt.close();
 		conn.close();
-		while(true) {
+		while(flag) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
-			userRequest = scan.nextLine();
-			if(userRequest == "B") return 0;
+			userRequest = scan.next();
+			if(userRequest.equals(back)) 
+				flag = false;
 		}
 	}
 	
-	private int viewScheduleTable(String sql) throws SQLException {
+	private void viewScheduleTable(String sql) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		String id,date,description,userRequest;
 		int scheduleIndex;
+		boolean flag=true;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -118,17 +122,19 @@ public class DatabaseExecutor {
 		rs.close();
 		stmt.close();
 		conn.close();
-		while(true) {
+		while(flag) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
-			if(userRequest == "B") return 0;
+			if(userRequest.equals(back)) 
+				flag = false;
 		}
 	}
 	
-	private int viewNoteTable(String sql) throws SQLException {
+	private void viewNoteTable(String sql) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		String id,note,userRequest;
 		int noteIndex;
+		boolean flag=true;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -143,18 +149,23 @@ public class DatabaseExecutor {
 		rs.close();
 		stmt.close();
 		conn.close();
-		while(true) {
+		while(flag) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
-			if(userRequest=="B") return 0;
+			if(userRequest.equals(back)) 
+				flag = false;
 		}
 	}
 	
-	private int  makeMaxIndexFromDatabase(int mainMenu) throws SQLException {
+	private int makeMaxIndexFromDatabase(int mainMenu) throws SQLException {
 		int max = 0;
 		StatementForMenu executeStatement=new StatementForMenu();
 		String sql = executeStatement.makeMaxIndexString(mainMenu);
-		executeDatabase(sql);
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		stmt = conn.createStatement();
+		System.out.println(sql);///////////////////////////////////////////////////여기지워라
+		rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			max = rs.getInt(1);
 			max = max+1;
@@ -168,7 +179,11 @@ public class DatabaseExecutor {
 		String indexName = setIndexName(mainMenu);
 		StatementForMenu executeStatement=new StatementForMenu();
 		String sql = executeStatement.makeMaxIndexString(mainMenu);
-		executeDatabase(sql);
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		stmt = conn.createStatement();
+		System.out.println(sql);///////////////////////////////////////////////////여기지워라
+		rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			if(rs.getInt(indexName) == index) 
 				flag = true;

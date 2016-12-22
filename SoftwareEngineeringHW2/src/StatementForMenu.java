@@ -2,9 +2,9 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class StatementForMenu {
-	final int PHONEBOOK = 1;
-	final int SCHEDULE = 2;
-	final int NOTE = 3;
+	final int PHONEBOOK = 2;
+	final int SCHEDULE = 3;
+	final int NOTE = 4;
 	private String sqlStatement="";
 	Account account = new Account();
 
@@ -17,35 +17,36 @@ public class StatementForMenu {
 	}
 	
 	public String makeStatementForViewing(int mainMenu) {
-		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu) + " WHERE id=" + account.getId();
+		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu) + " WHERE id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
 	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
 		                + " WHERE " + makeIndexName(mainMenu) + "=" + Integer.toString(index)
-		                + " id=" + account.getId();
+		                + " id='" + account.getId() + "'";
 		return sqlStatement;
 	}
+	
 	public String makeMaxIndexString(int mainMenu){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook WHERE id=" + account.getId();
+			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook WHERE id='" + account.getId() + "'";
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule WHERE id=" + account.getId();
+			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule WHERE id='" + account.getId() + "'";
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT MAX(noteIndex) FROM note WHERE id=" + account.getId();
+			sqlStatement = "SELECT MAX(noteIndex) FROM note WHERE id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
 	public String makeIsInDatabaseString(int mainMenu){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT * FROM phonebook WHERE id=" + account.getId();
+			sqlStatement = "SELECT * FROM phonebook WHERE id='" + account.getId() + "'";
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT* FROM schedule WHERE id=" + account.getId();
+			sqlStatement = "SELECT* FROM schedule WHERE id='" + account.getId() + "'";
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT * FROM note WHERE id=" + account.getId();
+			sqlStatement = "SELECT * FROM note WHERE id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
