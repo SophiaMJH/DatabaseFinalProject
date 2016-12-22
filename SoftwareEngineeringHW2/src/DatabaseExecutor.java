@@ -24,7 +24,7 @@ public class DatabaseExecutor {
 		stmt.executeUpdate(sql);
 	}
 	
-	public void executeFunction(int mainMenu, int subMenu) throws SQLException {
+	public void executeFunction(int mainMenu, int subMenu) throws Exception {
 		if(subMenu == ADD) {
 			executeAddFunction(mainMenu);
 			return; 
@@ -38,7 +38,7 @@ public class DatabaseExecutor {
 		}
 	}
 	
-	private void executeAddFunction(int mainMenu) throws SQLException {
+	private void executeAddFunction(int mainMenu) throws Exception  {
 		StatementForMenu executeStatement = new StatementForMenu();
 		int maxIndex = makeMaxIndexFromDatabase(mainMenu);
 		String sql = executeStatement.makeStatementForAddition(mainMenu, maxIndex);
@@ -174,7 +174,7 @@ public class DatabaseExecutor {
 	}
 
 	
-	private boolean isInDatabase(int index, int mainMenu) throws SQLException {
+	private boolean isInDatabase(int index, int mainMenu) throws SQLException  {
 		boolean flag = false;
 		String indexName = setIndexName(mainMenu);
 		StatementForMenu executeStatement=new StatementForMenu();
