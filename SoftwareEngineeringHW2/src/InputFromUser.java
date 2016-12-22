@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.*;
 
 public class InputFromUser {
@@ -9,7 +10,6 @@ public class InputFromUser {
 		
 		Scanner scan = new Scanner(System.in);
 		PhoneBook phoneBookForAddition = new PhoneBook();
-		phoneBookForAddition.id = Account.getId();
 		System.out.print("name : ");
 		phoneBookForAddition.name = scan.nextLine();
 		System.out.print("phone : ");
@@ -18,18 +18,16 @@ public class InputFromUser {
 		return phoneBookForAddition;
 	}
 	
-	public Schedule queryAndSetSchedule(int index) {
+	public Schedule queryAndSetSchedule(int index) throws ParseException {
 		
 		Scanner scan = new Scanner(System.in);
 		Schedule scheduleForAddition = new Schedule();
-		scheduleForAddition.id = Account.getId();
 		int year, month, day;
+		java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("yyyy mm dd");
 		System.out.print("date : ");
-		year = scan.nextInt();
-		month = scan.nextInt();
-		day = scan.nextInt();
-		scheduleForAddition.date = new Date(year, month, day);
-		System.out.print("description : ");
+		String dateString = scan.nextLine();
+		scheduleForAddition.date = format.parse(dateString);
+		System.out.println("description : ");
 		scheduleForAddition.description = scan.nextLine();
 		scheduleForAddition.scheduleIndex = index;
 		return scheduleForAddition;
@@ -38,7 +36,6 @@ public class InputFromUser {
 	public Note queryAndSetNote(int index) {
 		Scanner scan = new Scanner(System.in);
 		Note noteForAddition = new Note();
-		noteForAddition.id = Account.getId();
 		System.out.print("["+index+"] note : " );
 		noteForAddition.note = scan.nextLine();
 		noteForAddition.noteIndex = index;

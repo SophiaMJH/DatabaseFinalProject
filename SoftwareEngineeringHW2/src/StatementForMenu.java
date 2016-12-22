@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class StatementForMenu {
@@ -8,7 +9,7 @@ public class StatementForMenu {
 	private String sqlStatement="";
 	Account account = new Account();
 
-	public String makeStatementForAddition(int mainMenu, int maxIndex) {
+	public String makeStatementForAddition(int mainMenu, int maxIndex) throws Exception {
 		sqlStatement = "INSERT INTO " 
 						+ makeDatabaseName(mainMenu)
 						+ makeAttributesStringForAddition(mainMenu)
@@ -75,7 +76,7 @@ public class StatementForMenu {
 		return databaseAttributes;
 	}
 	
-	private String makeValueStringForAddition(int mainMenu, int maxIndex) {
+	private String makeValueStringForAddition(int mainMenu, int maxIndex) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		String valuesForAddition = "";
 		InputFromUser inputFromUser = new InputFromUser();
