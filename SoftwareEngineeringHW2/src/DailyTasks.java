@@ -26,6 +26,8 @@ public class DailyTasks {
 	public static void main(String[] args) throws Exception {
 		AccountManager accountManager = new AccountManager();
 		accountManager.login();
+		Menu start = new Menu();
+		start.showMainMenu();
 	}
 
 }

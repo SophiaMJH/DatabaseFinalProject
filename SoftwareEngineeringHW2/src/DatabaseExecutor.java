@@ -101,7 +101,7 @@ public class DatabaseExecutor {
 				flag = false;
 		}
 	}
-	
+	///////////////////////////////////////////////////출력값 줄맞추기 해야돼!!!!!!!!!!!!!!!!!!!!
 	private void viewScheduleTable(String sql) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		String id,date,description,userRequest;
@@ -116,8 +116,8 @@ public class DatabaseExecutor {
 			id = rs.getString("id");
 			date = rs.getString("date");
 			description = rs.getString("description");
-			scheduleIndex = rs.getInt("phoneIndex");
-			System.out.print(id+"\t"+date+"\t"+description+"\t"+scheduleIndex+"\n");
+			scheduleIndex = rs.getInt("scheduleIndex");
+			System.out.print(id+"\t"+date+"\t\t\t"+description+"\t"+scheduleIndex+"\n");
 		}
 		rs.close();
 		stmt.close();
@@ -143,7 +143,7 @@ public class DatabaseExecutor {
 		while(rs.next()) {
 			id = rs.getString("id");
 			note = rs.getString("note");
-			noteIndex = rs.getInt("phoneIndex");
+			noteIndex = rs.getInt("noteIndex");
 			System.out.print(id+"\t"+note+"\t"+noteIndex+"\n");
 		}
 		rs.close();
@@ -173,12 +173,12 @@ public class DatabaseExecutor {
 		return max;
 	}
 
-	
+	//selected 인덱스 받아왔음
 	private boolean isInDatabase(int index, int mainMenu) throws SQLException  {
 		boolean flag = false;
 		String indexName = setIndexName(mainMenu);
 		StatementForMenu executeStatement=new StatementForMenu();
-		String sql = executeStatement.makeMaxIndexString(mainMenu);
+		String sql = executeStatement.makeIsInDatabaseString(indexName, mainMenu, index);
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 				"root", "ComputerScience14*");
 		stmt = conn.createStatement();
@@ -188,6 +188,7 @@ public class DatabaseExecutor {
 			if(rs.getInt(indexName) == index) 
 				flag = true;
 		}
+		System.out.println(flag);///////////////////////////////////////////////여기도 지워라
 		return flag;
 	}
 	

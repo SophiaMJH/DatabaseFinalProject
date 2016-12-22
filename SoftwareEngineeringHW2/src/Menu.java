@@ -5,7 +5,7 @@ import java.sql.*;
 
 class Menu{
 	String[] mainMenus = {"1. Change the user account", 
-                          "2. Manage the users¡¯ phone book", 
+                          "2. Manage the user¡¯s phone book", 
                           "3. Manage the user¡¯s schedule",
                           "4. Manage the user¡¯s notes",
                           "5. Logout"};
@@ -18,7 +18,7 @@ class Menu{
 	int mainState;
 	int subMenu;
 	
-	public void showMainMenu() throws SQLException {
+	public void showMainMenu() throws Exception {
 		Scanner scan = new Scanner(System.in);
 		mainState = 0;
 		while(mainState != 5){
@@ -29,11 +29,12 @@ class Menu{
 			mainState=scan.nextInt();
 			if(mainState == 5)
 				break;
+			subMenu=0;
 			executeMenu(mainState);
 		}
 	}
 
-	private void executeMenu(int mainMenu) throws SQLException {
+	private void executeMenu(int mainMenu) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		switch(mainMenu){
 			case 1 : 
@@ -51,6 +52,7 @@ class Menu{
 						databaseExecutor.executeFunction(mainMenu, subMenu);
 					}
 				}
+				break;
 		}
 		
 	}

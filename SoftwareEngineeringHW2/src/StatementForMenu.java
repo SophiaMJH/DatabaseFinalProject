@@ -24,8 +24,8 @@ public class StatementForMenu {
 	
 	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
-		                + " WHERE " + makeIndexName(mainMenu) + "=" + Integer.toString(index)
-		                + " id='" + account.getId() + "'";
+		                + " WHERE " + makeIndexName(mainMenu) + "='" + Integer.toString(index)
+		                + "' AND id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
@@ -40,14 +40,14 @@ public class StatementForMenu {
 		return sqlStatement;
 	}
 	
-	public String makeIsInDatabaseString(int mainMenu){
+	public String makeIsInDatabaseString(String indexName, int mainMenu, int index){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT * FROM phonebook WHERE id='" + account.getId() + "'";
+			sqlStatement = "SELECT * FROM phonebook WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT* FROM schedule WHERE id='" + account.getId() + "'";
+			sqlStatement = "SELECT * FROM schedule WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT * FROM note WHERE id='" + account.getId() + "'";
+			sqlStatement = "SELECT * FROM note WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	

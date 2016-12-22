@@ -2,9 +2,9 @@ import java.text.ParseException;
 import java.util.*;
 
 public class InputFromUser {
-	final int PHONEBOOK = 1;
-	final int SCHEDULE = 2;
-	final int NOTE = 3;
+	final int PHONEBOOK = 2;
+	final int SCHEDULE = 3;
+	final int NOTE = 4;
 	
 	public PhoneBook queryAndSetPhoneBook(int index) {
 		
