@@ -61,7 +61,10 @@ public class AccountManager {
 		Account.setPw(scan.nextLine());
 		String changeID=account.getId();
 		String changePW=account.getPw();
-		applyChangeAccountToDB(originID, changeID, changePW);
+		applyChangeAccountToMemberTable(originID, changeID, changePW);
+		applyChangeAccountToNoteTable(originID, changeID);
+		applyChangeAccountToPhonebookTable(originID, changeID);
+		applyChangeAccountToScheduleTable(originID, changeID);
 		
 	}
 	
@@ -102,12 +105,44 @@ public class AccountManager {
 		 return flag;
 	}
 	
-	private void applyChangeAccountToDB(String idBefore, String idAfter, String pw) throws SQLException{
+	private void applyChangeAccountToMemberTable(String idBefore, String idAfter, String pw) throws SQLException{
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 				"root", "ComputerScience14*");
 		Statement stmt = conn.createStatement();
 		String sql = "update member set id='" + idAfter + "', pw='" + pw + "' where id='" + idBefore + "'";
 		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToNoteTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update note set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToPhonebookTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update phonebook set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToScheduleTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update schedule set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
 	}
 
 	
