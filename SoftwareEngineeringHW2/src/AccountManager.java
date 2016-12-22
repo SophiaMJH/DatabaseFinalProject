@@ -1,11 +1,20 @@
 import java.util.*;
-import java.io.*;
+import java.sql.*;
 
 
-public class Account {
-	public String id;
-	private String pw;
-	//id,pw가 db에 있다고하면
+class Account {
+	private static String id;
+	private static String pw;
+	
+	public static String getId() {
+		return id;
+	}
+	public static void setId(String inputId) {
+		id = inputId;
+	}
+	public static void setPw(String inputPw) {
+		pw = inputPw;
+	}
 }
 
 
@@ -14,40 +23,70 @@ public class AccountManager {
 	final int CHANGE=2;
 	String inputId;
 	String inputPw;
+	Account account  = new Account();
 
-	private int login(string id, string pw) {
+	private void login(String id, String pw) throws SQLException {
 		Scanner scan = new Scanner(System.in);
-		Account accountCheck= new Account();
-		
-		System.out.print("ID : ");
-		inputId = scan.nextLine();
-		System.out.print("PW : ");
-		inputPw= scan.nextLine();	
-		
-		if(id == inputId && pw == inputPw) {
-			showMenu();
+		while(true){
+			System.out.print("ID : ");
+			inputId = scan.nextLine();
+			System.out.print("PW : ");
+			inputPw= scan.nextLine();	
+			
+			if(isIdPwInDatabase(inputId, inputPw)) {
+				account.setId(inputId);
+				account.setPw(inputPw);
+				break;
+			} else {
+				System.out.println("아이디와 패스워드가 일치하지 않습니다");
+			}
 		}
-		else if 
-			return login(id, pw);
 	}
 	
-	private void changeAccount(void){
-		//newid와 newpw를 받아서 ! 넣어줭!
-		
-		System.out.print("ID : ");
-		id = scan.nextLine();
-		System.our.print("PW : ");
-		pw = scan.nextLine();
-		
-		
-		//db연결이 시급
+	public void changeAccount() throws SQLException {
+		Scanner scan = new Scanner(System.in);
+		while(true){
+			System.out.print("ID : ");
+			String inputId = scan.nextLine();
+			if(!isIdInDatabase(inputId))
+				System.out.println("중복된 아이디입니다");
+			else{
+				account.setId(inputId);
+				break;
+			}
+		}
+		System.out.print("PW : ");
+			Account.setPw(scan.nextLine());
 		
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private boolean isIdPwInDatabase(String inputId, String inputPW) throws SQLException {
+		boolean flag = false;
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+					"root", "ComputerScience14*");
+		 Statement stmt = conn.createStatement();
+		 String sql = "select * from member where id=" + inputId + 
+				      "and password=" + inputPW;
+		 ResultSet rs = stmt.executeQuery(sql);
+		 if(rs.next()) {
+			 flag = true;
+		 }
+		return flag;
 	}
+	
+	private boolean isIdInDatabase(String inputId) throws SQLException {
+		boolean flag = false;
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+					"root", "ComputerScience14*");
+		 Statement stmt = conn.createStatement();
+		 String sql = "select * from member where id=" + inputId;
+		 ResultSet rs = stmt.executeQuery(sql);
+		 if(rs.next()) {
+			 flag = true;
+		 }
+		return flag;
+	}
+	
 
 	
 }
