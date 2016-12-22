@@ -20,7 +20,6 @@ public class DatabaseExecutor {
 												"root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		String sql = statement;
-		System.out.println(sql); /////////////////////////////////////여기 지워라
 		stmt.executeUpdate(sql);
 	}
 	
@@ -81,7 +80,6 @@ public class DatabaseExecutor {
 		boolean flag=true;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
-		System.out.println(sql); ////////////////////////////////////////////여기 지워라
 		rs = stmt.executeQuery(sql);
 		System.out.print("id\t"+"name\t"+"phoneNumber\t"+"index\n");
 		while(rs.next()){
@@ -104,9 +102,9 @@ public class DatabaseExecutor {
 	///////////////////////////////////////////////////출력값 줄맞추기 해야돼!!!!!!!!!!!!!!!!!!!!
 	private void viewScheduleTable(String sql) throws SQLException {
 		Scanner scan = new Scanner(System.in);
-		String id,date,description,userRequest;
+		String id,date,description;
 		int scheduleIndex;
-		boolean flag=true;
+		Menu backMenu = new Menu();
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false", "root", "ComputerScience14*");
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -122,12 +120,7 @@ public class DatabaseExecutor {
 		rs.close();
 		stmt.close();
 		conn.close();
-		while(flag) {
-			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
-			userRequest=scan.nextLine();
-			if(userRequest.equals(back)) 
-				flag = false;
-		}
+		backMenu.queryBackMenu();
 	}
 	
 	private void viewNoteTable(String sql) throws SQLException {
@@ -164,7 +157,6 @@ public class DatabaseExecutor {
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 				"root", "ComputerScience14*");
 		stmt = conn.createStatement();
-		System.out.println(sql);///////////////////////////////////////////////////여기지워라
 		rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			max = rs.getInt(1);
@@ -182,7 +174,6 @@ public class DatabaseExecutor {
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
 				"root", "ComputerScience14*");
 		stmt = conn.createStatement();
-		System.out.println(sql);///////////////////////////////////////////////////여기지워라
 		rs = stmt.executeQuery(sql);
 		if(rs.next()) {
 			if(rs.getInt(indexName) == index) 

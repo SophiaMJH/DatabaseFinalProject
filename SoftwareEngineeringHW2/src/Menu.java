@@ -66,5 +66,17 @@ class Menu{
 		subMenu = scan.nextInt();
 		return subMenu;
 	}
+	
+	public void queryBackMenu(){
+		boolean flag = true;
+		String userRequest;
+		Scanner scan = new Scanner(System.in);
+		while(flag) {
+			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
+			userRequest=scan.nextLine();
+			if(userRequest.equals("B")) 
+				flag = false;
+		}
+	}
 
 }
