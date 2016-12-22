@@ -16,32 +16,32 @@ public class DatabaseExecutor {
 
 	private void executeDatabase(String statement) {
 		try{
-			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask",
 												"root", "ComputerScience14*");
-			stmt=conn.createStatement();
+			stmt = conn.createStatement();
 			String sql = statement;
-			rs=stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 		}catch(Exception e){
 			System.out.println("DatabaseExecutor class error");
 		}
 	}
 	
 	public void executeFunction(int mainMenu, int subMenu) throws SQLException {
-		if(subMenu==ADD) {
+		if(subMenu == ADD) {
 			executeAddFunction(mainMenu);
 			return; 
 		}
-		else if(subMenu==VIEW) {
+		else if(subMenu == VIEW) {
 			executeViewFunction(mainMenu);
 		}
-		else if(subMenu==DELETE) {
+		else if(subMenu == DELETE) {
 			executeDeleteFunction(mainMenu);
 			return;
 		}
 	}
 	
 	private void executeAddFunction(int mainMenu) throws SQLException {
-		StatementForMenu executeStatement=new StatementForMenu();
+		StatementForMenu executeStatement = new StatementForMenu();
 		int maxIndex = makeMaxIndexFromDatabase(mainMenu);
 		String sql = executeStatement.makeStatementForAddition(mainMenu, maxIndex+1);
 		executeDatabase(sql);
@@ -80,23 +80,23 @@ public class DatabaseExecutor {
 		
 		System.out.print("id\t"+"name\t"+"phoneNumber\t"+"index\n");
 		while(rs.next()){
-			id=rs.getString("id");
-			name=rs.getString("name");
-			phoneNumber=rs.getString("phoneNumber");
-			phoneIndex=rs.getInt("phoneIndex");
+			id = rs.getString("id");
+			name = rs.getString("name");
+			phoneNumber = rs.getString("phoneNumber");
+			phoneIndex = rs.getInt("phoneIndex");
 			System.out.print(id+"\t"+name+"\t"+phoneNumber+"\t"+phoneIndex+"\n");
 		}
 		rs.close();
 		stmt.close();
 		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
-			userRequest=scan.nextLine();
-			if(userRequest=="B") return 0;
+			userRequest = scan.nextLine();
+			if(userRequest == "B") return 0;
 		}
 	}
 	
 	private int viewScheduleTable(String sql) throws SQLException {
-		Scanner scan=new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		String id,date,description,userRequest;
 		int scheduleIndex;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask", "root", "ComputerScience14*");
@@ -105,10 +105,10 @@ public class DatabaseExecutor {
 		
 		System.out.print("id\t"+"date\t"+"description\t"+"index\n");
 		while(rs.next()) {
-			id=rs.getString("id");
-			date=rs.getString("date");
-			description=rs.getString("description");
-			scheduleIndex=rs.getInt("phoneIndex");
+			id = rs.getString("id");
+			date = rs.getString("date");
+			description = rs.getString("description");
+			scheduleIndex = rs.getInt("phoneIndex");
 			System.out.print(id+"\t"+date+"\t"+description+"\t"+scheduleIndex+"\n");
 		}
 		rs.close();
@@ -116,12 +116,12 @@ public class DatabaseExecutor {
 		while(true) {
 			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
 			userRequest=scan.nextLine();
-			if(userRequest=="B") return 0;
+			if(userRequest == "B") return 0;
 		}
 	}
 	
 	private int viewNoteTable(String sql) throws SQLException {
-		Scanner scan=new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);
 		String id,note,userRequest;
 		int noteIndex;
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask", "root", "ComputerScience14*");
@@ -130,9 +130,9 @@ public class DatabaseExecutor {
 		
 		System.out.print("id\t"+"note\t"+"index\n");
 		while(rs.next()) {
-			id=rs.getString("id");
-			note=rs.getString("note");
-			noteIndex=rs.getInt("phoneIndex");
+			id = rs.getString("id");
+			note = rs.getString("note");
+			noteIndex = rs.getInt("phoneIndex");
 			System.out.print(id+"\t"+note+"\t"+noteIndex+"\n");
 		}
 		rs.close();
@@ -149,7 +149,7 @@ public class DatabaseExecutor {
 		StatementForMenu executeStatement=new StatementForMenu();
 		String sql = executeStatement.makeMaxIndexString(mainMenu);
 		executeDatabase(sql);
-		if(rs.next()){
+		if(rs.next()) {
 			max = rs.getInt(1);
 			max = max+1;
 		}
@@ -163,7 +163,7 @@ public class DatabaseExecutor {
 		StatementForMenu executeStatement=new StatementForMenu();
 		String sql = executeStatement.makeMaxIndexString(mainMenu);
 		executeDatabase(sql);
-		if(rs.next()){
+		if(rs.next()) {
 			if(rs.getInt(indexName) == index) 
 				flag = true;
 		}

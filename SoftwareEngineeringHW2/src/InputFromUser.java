@@ -9,7 +9,7 @@ public class InputFromUser {
 		
 		Scanner scan = new Scanner(System.in);
 		PhoneBook phoneBookForAddition = new PhoneBook();
-		///id
+		phoneBookForAddition.id = Account.id;
 		System.out.print("name : ");
 		phoneBookForAddition.name = scan.nextLine();
 		System.out.print("phone : ");
@@ -22,7 +22,7 @@ public class InputFromUser {
 		
 		Scanner scan = new Scanner(System.in);
 		Schedule scheduleForAddition = new Schedule();
-		///id
+		scheduleForAddition.id = Account.id;
 		int year, month, day;
 		System.out.print("date : ");
 		year = scan.nextInt();
@@ -38,7 +38,7 @@ public class InputFromUser {
 	public Note queryAndSetNote(int index) {
 		Scanner scan = new Scanner(System.in);
 		Note noteForAddition = new Note();
-		//id
+		noteForAddition.id = Account.id;
 		System.out.print("["+index+"] note : " );
 		noteForAddition.note = scan.nextLine();
 		noteForAddition.noteIndex = index;
