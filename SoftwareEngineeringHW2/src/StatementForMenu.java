@@ -6,6 +6,7 @@ public class StatementForMenu {
 	final int SCHEDULE = 2;
 	final int NOTE = 3;
 	private String sqlStatement="";
+	Account account = new Account();
 
 	public String makeStatementForAddition(int mainMenu, int maxIndex) {
 		sqlStatement = "INSERT INTO " 
@@ -16,35 +17,35 @@ public class StatementForMenu {
 	}
 	
 	public String makeStatementForViewing(int mainMenu) {
-		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu);
+		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu) + " WHERE id=" + account.getId();
 		return sqlStatement;
 	}
 	
 	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
-						+ " WHERE " + makeIndexName(mainMenu) + "=" 
-						+ Integer.toString(index);
+		                + " WHERE " + makeIndexName(mainMenu) + "=" + Integer.toString(index)
+		                + " id=" + account.getId();
 		return sqlStatement;
 	}
 	public String makeMaxIndexString(int mainMenu){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook";
+			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook WHERE id=" + account.getId();
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule";
+			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule WHERE id=" + account.getId();
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT MAX(noteIndex) FROM note";
+			sqlStatement = "SELECT MAX(noteIndex) FROM note WHERE id=" + account.getId();
 		return sqlStatement;
 	}
 	
 	public String makeIsInDatabaseString(int mainMenu){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT * FROM phonebook";
+			sqlStatement = "SELECT * FROM phonebook WHERE id=" + account.getId();
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT* FROM schedule";
+			sqlStatement = "SELECT* FROM schedule WHERE id=" + account.getId();
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT * FROM note";
+			sqlStatement = "SELECT * FROM note WHERE id=" + account.getId();
 		return sqlStatement;
 	}
 	
@@ -81,7 +82,7 @@ public class StatementForMenu {
 		if(mainMenu == PHONEBOOK) {
 			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
 			valuesForAddition = "VALUES ('"
-								+ valuesForPhoneBook.id + "', '"
+								+ account.getId() + "', '"
 								+ valuesForPhoneBook.name +"', '"
 								+ valuesForPhoneBook.phoneNumber + "', '"
 								+ valuesForPhoneBook.phoneIndex + "')";
@@ -89,7 +90,7 @@ public class StatementForMenu {
 		else if(mainMenu == SCHEDULE) {
 			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
 			valuesForAddition = "VALUES ('"
-								+ valuesForSchedule.id + "', '"
+								+ account.getId() + "', '"
 								+ valuesForSchedule.date + "', '"
 								+ valuesForSchedule.description + "', '"
 								+ valuesForSchedule.scheduleIndex + "')";
@@ -97,7 +98,7 @@ public class StatementForMenu {
 		else if(mainMenu == NOTE) {
 			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
 			valuesForAddition = "VALUES ('" 
-								+ valuesForNote.id + "', '"
+								+ account.getId() + "', '"
 								+ valuesForNote.note + "', '"
 								+ valuesForNote.noteIndex + "')";
 		}
