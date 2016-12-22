@@ -18,7 +18,7 @@ class Menu{
 	int mainState;
 	int subMenu;
 	
-	public void showMainMenu() throws SQLException {
+	public void showMainMenu() throws Exception {
 		Scanner scan = new Scanner(System.in);
 		mainState = 0;
 		while(mainState != 5){
@@ -33,7 +33,7 @@ class Menu{
 		}
 	}
 
-	private void executeMenu(int mainMenu) throws SQLException {
+	private void executeMenu(int mainMenu) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		switch(mainMenu){
 			case 1 : 
@@ -63,6 +63,18 @@ class Menu{
 		System.out.print("메뉴 선택 : ");
 		subMenu = scan.nextInt();
 		return subMenu;
+	}
+	
+	public void queryBackMenu(){
+		boolean flag = true;
+		String userRequest;
+		Scanner scan = new Scanner(System.in);
+		while(flag) {
+			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
+			userRequest=scan.nextLine();
+			if(userRequest.equals("B")) 
+				flag = false;
+		}
 	}
 
 }
