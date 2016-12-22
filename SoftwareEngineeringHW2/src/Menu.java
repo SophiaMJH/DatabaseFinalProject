@@ -1,63 +1,112 @@
 import java.util.*;
 import java.io.*;
+import java.sql.SQLException;
 
-
+///////////////////////////////////////////////대충 틀만 잡아놨어!!!!! 지윤아 나머지 구현해줭ㅋㅋㅋㅋㅋㅋ
 public class Menu {
+	String[] mainMenus = {"1. Change the user account", "2. Manage the users’ phone book", 
+			"3. Manage the user’s schedule", "4. Manage the user’s notes",
+			"5. Logout"};
+	String[][] subMenus = {{},{}, {"1. Add a new address", "2. View all address", "3. Delete an existing address",
+			"4.Quit"}, {"1. Add a new schedule", "2. View all schedules", "3. Delete an existing schedules",
+			"4.Quit"}, {"1. Create a new note", "2. view all note", "3. Delete an existing note", "4.Quit"}};
+	static int mainState;
+	static int subState;
 	
-	
-
-	public static void showMenu(){
-		
-		System.out.println("1. Change the user account ");
-		System.out.println("2. Manage the users’ phone book");
-		System.out.println("3. Manage the user’s schedule");
-		System.out.println("4. Manage the user’s notes");
-		System.out.println("5. Logout");
-		
-		System.out.println("메뉴 선택: ");
-		
+	public void showMenu() throws SQLException{
 		Scanner scan = new Scanner(System.in);
-		int state = scan.nextInt();
-		
-		showMenu(state);
+		mainState = 0;
+		while(mainState != 5){
+			for(int i=0; i<5; i++){
+				System.out.println(mainMenus[i]);
+			}
+			System.out.print("메뉴 선택 : ");
+			mainState=scan.nextInt();
+			if(mainState == 5)
+				break;
+			showMenu(mainState);
+		}
 	}
 
-	public static void showMenu(int state){
-		
-		while(state>=1 && state<=5){
+	private void showMenu(int mainState) throws SQLException {
+		Scanner scan = new Scanner(System.in);
+		switch(mainState){
+			case 1 : 
+				AccountManager am = new AccountManager();
+				am.changeAccount();
 			
-			switch(state){
-			case 1: changeAccount(); break;
-			case 2: 
-					System.out.println("1. Add a new address ");
-					System.out.println("2. View all address");
-					System.out.println("3. Delete an existing address");
-					System.out.println("4.Quit");
-						
-			case 3: 
-					System.out.println("1. Add a new schedule ");
-					System.out.println("2. View all schedules");
-					System.out.println("3. Delete an existing schedules");
-					System.out.println("4.Quit");
-					
-			case 4: 
-					System.out.println("1. Create a new note ");
-					System.out.println("2. view all note");
-					System.out.println("3. Delete an existing note");
-					System.out.println("4.Quit");
-					
-			case 5: break;
-			}
+			case 2 : 
+				while(subState != 4){
+					subState = showSubMenu(mainState);
+					if(subState == 4)
+						break;
+					else
+						callPhoneBookService(subState);
+				}
 			
-			System.out.println("메뉴 선택: ");
-			Scanner scan = new Scanner(System.in);
-			String select = scan.nextLine();
+			case 3 :
+				while(subState != 4){
+					subState = showSubMenu(mainState);
+					if(subState == 4)
+						break;
+					else
+						callScheduleService(subState);
+				}
 			
-			}
+			case 4 : 
+				while(subState != 4){
+					subState = showSubMenu(mainState);
+					if(subState == 4)
+						break;
+					else
+						callNoteService(subState);
+				}
 		}
-	
-	public  void backMenu(){
 		
 	}
 	
+	private int showSubMenu(int mainState) {
+		Scanner scan = new Scanner(System.in);
+		for(int i=0; i<4; i++){
+			System.out.println(subMenus[mainState][i]);
+		}
+		System.out.print("메뉴 선택 : ");
+		subState = scan.nextInt();
+		return subState;
 	}
+
+	private void callPhoneBookService(int subState) throws SQLException {
+		selectAndExecuteSubMenu(mainState);
+	}
+	
+	private void callScheduleService(int subState) throws SQLException {
+		selectAndExecuteSubMenu(mainState);
+	}
+	
+	private void callNoteService(int subState) throws SQLException {
+		selectAndExecuteSubMenu(mainState);
+	}
+	
+	private static void selectAndExecuteSubMenu(int mainState) throws SQLException {
+		DatabaseExecutor executeSelectedMenu = new DatabaseExecutor();
+		executeSelectedMenu.executeFunction(mainState, subState);
+		
+		if(subState == 1) {
+			executeSelectedMenu.executeFunction(mainState, subState);
+			return;
+		}
+		else if(subState == 2) {
+			executeSelectedMenu.executeFunction(mainState, subState);
+			return;
+		}
+		else if(subState == 3) {
+			executeSelectedMenu.executeFunction(mainState, subState);
+			return;
+		}
+		
+		
+	}
+	public void backMenu() {
+		;
+	}
+}
