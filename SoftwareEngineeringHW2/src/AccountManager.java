@@ -1,52 +1,148 @@
 import java.util.*;
-import java.io.*;
+import java.sql.*;
 
 
-public class Account {
-	public String id;
-	private String pw;
-	//id,pw가 db에 있다고하면
+class Account {
+	private static String id;
+	private static String pw;
+	
+	public static String getId() {
+		return id;
+	}
+	public static String getPw() {
+		return pw;
+	}
+	public static void setId(String inputId) {
+		id = inputId;
+	}
+	public static void setPw(String inputPw) {
+		pw = inputPw;
+	}
 }
 
 
 public class AccountManager {
-	final int LOGIN=1;
-	final int CHANGE=2;
 	String inputId;
 	String inputPw;
+	Account account  = new Account();
 
-	private int login(string id, string pw) {
+	public void login() throws SQLException {
 		Scanner scan = new Scanner(System.in);
-		Account accountCheck= new Account();
-		
-		System.out.print("ID : ");
-		inputId = scan.nextLine();
-		System.out.print("PW : ");
-		inputPw= scan.nextLine();	
-		
-		if(id == inputId && pw == inputPw) {
-			showMenu();
+		while(true){
+			System.out.print("ID : ");
+			inputId = scan.nextLine();
+			System.out.print("PW : ");
+			inputPw= scan.nextLine();	
+			
+			if(isIdPwInDatabase(inputId, inputPw)) {
+				account.setId(inputId);
+				account.setPw(inputPw);
+				break;
+			} else {
+				System.out.println("아이디와 패스워드가 일치하지 않습니다");
+			}
 		}
-		else if 
-			return login(id, pw);
 	}
 	
-	private void changeAccount(void){
-		//newid와 newpw를 받아서 ! 넣어줭!
-		
-		System.out.print("ID : ");
-		id = scan.nextLine();
-		System.our.print("PW : ");
-		pw = scan.nextLine();
-		
-		
-		//db연결이 시급
+	public void changeAccount() throws SQLException {
+		Scanner scan = new Scanner(System.in);
+		String originID=account.getId();
+		while(true){
+			System.out.print("ID : ");
+			String inputId = scan.nextLine();
+			if(isIdInDatabase(inputId))
+				System.out.println("중복된 아이디입니다");
+			else{
+				account.setId(inputId);
+				break;
+			}
+		}
+		System.out.print("PW : ");
+		Account.setPw(scan.nextLine());
+		String changeID=account.getId();
+		String changePW=account.getPw();
+		applyChangeAccountToMemberTable(originID, changeID, changePW);
+		applyChangeAccountToNoteTable(originID, changeID);
+		applyChangeAccountToPhonebookTable(originID, changeID);
+		applyChangeAccountToScheduleTable(originID, changeID);
 		
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private boolean isIdPwInDatabase(String inputId, String inputPW) throws SQLException {
+		boolean flag = false;
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+					"root", "ComputerScience14*");
+		 Statement stmt = conn.createStatement();
+		 String sql = "select * from member where id='" + inputId + 
+				      "' and pw='" + inputPW +"'";
+		 ResultSet rs = stmt.executeQuery(sql);
+		 if(rs.next()) {
+			 rs.close();
+			 stmt.close();
+			 flag = true;
+		 }
+		 rs.close();
+		 stmt.close();
+		 return flag;
+	}
+	
+	private boolean isIdInDatabase(String inputId) throws SQLException {
+		boolean flag = false;
+		 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+					"root", "ComputerScience14*");
+		 Statement stmt = conn.createStatement();
+		 String sql = "select * from member where id='" + inputId + "'";
+		 ResultSet rs = stmt.executeQuery(sql);
+		 if(rs.next()) {
+			 rs.close();
+			 stmt.close();
+			 conn.close();
+			 flag=true;
+		 }
+		 rs.close();
+		 stmt.close();
+		 conn.close();
+		 return flag;
+	}
+	
+	private void applyChangeAccountToMemberTable(String idBefore, String idAfter, String pw) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update member set id='" + idAfter + "', pw='" + pw + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToNoteTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update note set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToPhonebookTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update phonebook set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
+	}
+	
+	private void applyChangeAccountToScheduleTable(String idBefore, String idAfter) throws SQLException{
+		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dailytask?autoReconnect=true&useSSL=false",
+				"root", "ComputerScience14*");
+		Statement stmt = conn.createStatement();
+		String sql = "update schedule set id='" + idAfter + "' where id='" + idBefore + "'";
+		stmt.executeUpdate(sql);
+		stmt.close();
+		conn.close();
 	}
 
 	

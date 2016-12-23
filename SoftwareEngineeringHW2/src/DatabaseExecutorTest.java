@@ -11,6 +11,7 @@ public class DatabaseExecutorTest {
 		int SCHEDULE = 3;
 		assertNotNull(executedb.setIndexName(SCHEDULE));
 		}
+<<<<<<< HEAD
 	
 	private String setIndexName(int mainMenu){
 		final int PHONEBOOK = 2;
@@ -30,4 +31,6 @@ public class DatabaseExecutorTest {
 		return indexName;
 	
 	}
+=======
+>>>>>>> 4b4cf47255e9bf83bc27f77b520048ccf51eb44e
 	}

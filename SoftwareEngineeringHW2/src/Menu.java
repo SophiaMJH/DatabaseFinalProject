@@ -1,19 +1,24 @@
 import java.util.*;
 import java.io.*;
 import java.sql.SQLException;
+import java.sql.*;
 
-///////////////////////////////////////////////대충 틀만 잡아놨어!!!!! 지윤아 나머지 구현해줭ㅋㅋㅋㅋㅋㅋ
-public class Menu {
-	String[] mainMenus = {"1. Change the user account", "2. Manage the users’ phone book", 
-			"3. Manage the user’s schedule", "4. Manage the user’s notes",
-			"5. Logout"};
-	String[][] subMenus = {{},{}, {"1. Add a new address", "2. View all address", "3. Delete an existing address",
-			"4.Quit"}, {"1. Add a new schedule", "2. View all schedules", "3. Delete an existing schedules",
-			"4.Quit"}, {"1. Create a new note", "2. view all note", "3. Delete an existing note", "4.Quit"}};
-	static int mainState;
-	static int subState;
+class Menu{
+	String[] mainMenus = {"1. Change the user account", 
+                          "2. Manage the user’s phone book", 
+                          "3. Manage the user’s schedule",
+                          "4. Manage the user’s notes",
+                          "5. Logout"};
+	String[][] subMenus = {{},{}, {"1. Add a new address", "2. View all address",
+                                   "3. Delete an existing address", "4. Quit"},
+	                              {"1. Add a new schedule", "2. View all schedules",
+                                   "3. Delete an existing schedules", "4. Quit"},
+                                  {"1. Create a new note", "2. view all note",
+                                   "3. Delete an existing note", "4. Quit"}};
+	int mainState;
+	int subMenu;
 	
-	public void showMenu() throws SQLException{
+	public void showMainMenu() throws Exception {
 		Scanner scan = new Scanner(System.in);
 		mainState = 0;
 		while(mainState != 5){
@@ -24,89 +29,54 @@ public class Menu {
 			mainState=scan.nextInt();
 			if(mainState == 5)
 				break;
-			showMenu(mainState);
+			subMenu=0;
+			executeMenu(mainState);
 		}
 	}
 
-	private void showMenu(int mainState) throws SQLException {
+	private void executeMenu(int mainMenu) throws Exception {
 		Scanner scan = new Scanner(System.in);
-		switch(mainState){
+		switch(mainMenu){
 			case 1 : 
-				AccountManager am = new AccountManager();
-				am.changeAccount();
+				AccountManager accountManager = new AccountManager();
+				accountManager.changeAccount();
+				break;
 			
-			case 2 : 
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
+			case 2 : case 3 : case 4 :
+				while(subMenu != 4){
+					subMenu = showAndSelectSubMenu(mainMenu);
+					if(subMenu == 4)
 						break;
-					else
-						callPhoneBookService(subState);
+					else{
+						DatabaseExecutor databaseExecutor = new DatabaseExecutor();
+						databaseExecutor.executeFunction(mainMenu, subMenu);
+					}
 				}
-			
-			case 3 :
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
-						break;
-					else
-						callScheduleService(subState);
-				}
-			
-			case 4 : 
-				while(subState != 4){
-					subState = showSubMenu(mainState);
-					if(subState == 4)
-						break;
-					else
-						callNoteService(subState);
-				}
+				break;
 		}
 		
 	}
 	
-	private int showSubMenu(int mainState) {
+	private int showAndSelectSubMenu(int mainState) {
 		Scanner scan = new Scanner(System.in);
-		for(int i=0; i<4; i++){
+		for(int i = 0; i < 4; i++){
 			System.out.println(subMenus[mainState][i]);
 		}
 		System.out.print("메뉴 선택 : ");
-		subState = scan.nextInt();
-		return subState;
+		subMenu = scan.nextInt();
+		return subMenu;
+	}
+	
+	public void queryBackMenu(){
+		boolean flag = true;
+		String userRequest;
+		Scanner scan = new Scanner(System.in);
+		while(flag) {
+			System.out.print("메뉴로 돌아가시려면 B를 입력해주세요 : ");
+			userRequest=scan.nextLine();
+			if(userRequest.equals("B")) 
+				flag = false;
+		}
 	}
 
-	private void callPhoneBookService(int subState) throws SQLException {
-		selectAndExecuteSubMenu(mainState);
-	}
-	
-	private void callScheduleService(int subState) throws SQLException {
-		selectAndExecuteSubMenu(mainState);
-	}
-	
-	private void callNoteService(int subState) throws SQLException {
-		selectAndExecuteSubMenu(mainState);
-	}
-	
-	private static void selectAndExecuteSubMenu(int mainState) throws SQLException {
-		DatabaseExecutor executeSelectedMenu = new DatabaseExecutor();
-		executeSelectedMenu.executeFunction(mainState, subState);
-		
-		if(subState == 1) {
-			executeSelectedMenu.executeFunction(mainState, subState);
-			return;
-		}
-		else if(subState == 2) {
-			executeSelectedMenu.executeFunction(mainState, subState);
-			return;
-		}
-		else if(subState == 3) {
-			executeSelectedMenu.executeFunction(mainState, subState);
-			return;
-		}
-		
-		
-	}
-	public void backMenu() {
-		;
-	}
 }

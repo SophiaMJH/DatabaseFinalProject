@@ -1,23 +1,21 @@
 import java.util.*;
 import java.io.*;
+import java.sql.SQLException;
 
 
 class PhoneBook{
-	String id;
 	String name;
 	String phoneNumber;
 	int phoneIndex;
 }
 
 class Schedule{
-	String id;
-	Date date;
+	String date;
 	String description;
 	int scheduleIndex;
 }
 
 class Note{
-	String id;
 	String note;
 	int noteIndex;
 }
@@ -25,9 +23,11 @@ class Note{
 
 public class DailyTasks {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args) throws Exception {
+		AccountManager accountManager = new AccountManager();
+		accountManager.login();
+		Menu start = new Menu();
+		start.showMainMenu();
 	}
 
 }

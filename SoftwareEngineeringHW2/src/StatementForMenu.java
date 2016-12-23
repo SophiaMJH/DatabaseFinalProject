@@ -1,13 +1,15 @@
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class StatementForMenu {
-	final int PHONEBOOK = 1;
-	final int SCHEDULE = 2;
-	final int NOTE = 3;
+	final int PHONEBOOK = 2;
+	final int SCHEDULE = 3;
+	final int NOTE = 4;
 	private String sqlStatement="";
+	Account account = new Account();
 
-	public String makeStatementForAddition(int mainMenu, int maxIndex) {
+	public String makeStatementForAddition(int mainMenu, int maxIndex) throws Exception {
 		sqlStatement = "INSERT INTO " 
 						+ makeDatabaseName(mainMenu)
 						+ makeAttributesStringForAddition(mainMenu)
@@ -16,42 +18,43 @@ public class StatementForMenu {
 	}
 	
 	public String makeStatementForViewing(int mainMenu) {
-		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu);
+		sqlStatement = "SELECT * FROM " + makeDatabaseName(mainMenu) + " WHERE id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
 	public String makeStatementForDeletion(int mainMenu, int index) {
 		sqlStatement = "DELETE FROM " + makeDatabaseName(mainMenu)
-						+ "WHERE " + makeIndexName(mainMenu) + "=" 
-						+ Integer.toString(index);
-		return sqlStatement;
-	}
-	public String makeMaxIndexString(int mainMenu){
-		String sqlStatement = "";
-		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook";
-		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule";
-		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT MAX(noteIndex) FROM note";
+		                + " WHERE " + makeIndexName(mainMenu) + "='" + Integer.toString(index)
+		                + "' AND id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
-	public String makeIsInDatabaseString(int mainMenu){
+	public String makeMaxIndexString(int mainMenu){
 		String sqlStatement = "";
 		if(mainMenu == PHONEBOOK)
-			sqlStatement = "SELECT * FROM phonebook";
+			sqlStatement = "SELECT MAX(phoneIndex) FROM phonebook WHERE id='" + account.getId() + "'";
 		else if(mainMenu == SCHEDULE)
-			sqlStatement = "SELECT* FROM schedule";
+			sqlStatement = "SELECT MAX(scheduleIndex) FROM schedule WHERE id='" + account.getId() + "'";
 		else if(mainMenu == NOTE)
-			sqlStatement = "SELECT * FROM note";
+			sqlStatement = "SELECT MAX(noteIndex) FROM note WHERE id='" + account.getId() + "'";
+		return sqlStatement;
+	}
+	
+	public String makeIsInDatabaseString(String indexName, int mainMenu, int index){
+		String sqlStatement = "";
+		if(mainMenu == PHONEBOOK)
+			sqlStatement = "SELECT * FROM phonebook WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
+		else if(mainMenu == SCHEDULE)
+			sqlStatement = "SELECT * FROM schedule WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
+		else if(mainMenu == NOTE)
+			sqlStatement = "SELECT * FROM note WHERE " + indexName + "='" + index + "' AND id='" + account.getId() + "'";
 		return sqlStatement;
 	}
 	
 	private String makeDatabaseName(int mainMenu) {
 		String databaseName = "";
 		if(mainMenu == PHONEBOOK)
-			databaseName = "phoneBook";
+			databaseName = "phonebook";
 		else if(mainMenu == SCHEDULE)
 			databaseName = "schedule";
 		else if(mainMenu == NOTE)
@@ -74,32 +77,32 @@ public class StatementForMenu {
 		return databaseAttributes;
 	}
 	
-	private String makeValueStringForAddition(int mainMenu, int maxIndex) {
+	private String makeValueStringForAddition(int mainMenu, int maxIndex) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		String valuesForAddition = "";
 		InputFromUser inputFromUser = new InputFromUser();
 		if(mainMenu == PHONEBOOK) {
 			PhoneBook valuesForPhoneBook = inputFromUser.queryAndSetPhoneBook(maxIndex);
-			valuesForAddition = "VALUES ("
-								+ valuesForPhoneBook.id + ", "
-								+ valuesForPhoneBook.name +", "
-								+ valuesForPhoneBook.phoneNumber + ", "
-								+ valuesForPhoneBook.phoneIndex + ")";
+			valuesForAddition = "VALUES ('"
+								+ account.getId() + "', '"
+								+ valuesForPhoneBook.name +"', '"
+								+ valuesForPhoneBook.phoneNumber + "', '"
+								+ valuesForPhoneBook.phoneIndex + "')";
 		}
 		else if(mainMenu == SCHEDULE) {
 			Schedule valuesForSchedule = inputFromUser.queryAndSetSchedule(maxIndex);
-			valuesForAddition = "VALUES ("
-								+ valuesForSchedule.id + ", "
-								+ valuesForSchedule.date + ", "
-								+ valuesForSchedule.description + ", "
-								+ valuesForSchedule.scheduleIndex + ")";
+			valuesForAddition = "VALUES ('"
+								+ account.getId() + "', '"
+								+ valuesForSchedule.date + "', '"
+								+ valuesForSchedule.description + "', '"
+								+ valuesForSchedule.scheduleIndex + "')";
 		}
 		else if(mainMenu == NOTE) {
 			Note valuesForNote = inputFromUser.queryAndSetNote(maxIndex);
-			valuesForAddition = "VALUES (" 
-								+ valuesForNote.id + ", "
-								+ valuesForNote.note + ", "
-								+ valuesForNote.noteIndex + ")";
+			valuesForAddition = "VALUES ('" 
+								+ account.getId() + "', '"
+								+ valuesForNote.note + "', '"
+								+ valuesForNote.noteIndex + "')";
 		}
 		else {
 			//exception
