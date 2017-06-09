@@ -1,0 +1,45 @@
+CREATE TABLE student
+(s_id CHAR(20),
+s_pwd CHAR(20),
+s_name CHAR(10),
+s_major CHAR(20),
+s_addr CHAR(50),
+CONSTRAINT student_pk PRIMARY KEY(s_id)
+);
+CREATE TABLE professor
+(p_id CHAR(20),
+p_name CHAR(10),
+p_major CHAR(20),
+CONSTRAINT professor_pk PRIMARY KEY(p_id)
+);
+CREATE TABLE course
+(c_id CHAR(20),
+c_id_no CHAR(3),
+c_name CHAR(20),
+c_unit NUMBER,
+CONSTRAINT course_pk PRIMARY KEY(c_id, c_id_no)
+);
+CREATE TABLE teach
+(p_id CHAR(20),
+c_id CHAR(20),
+c_id_no CHAR(3),
+t_year NUMBER,
+t_semester NUMBER,
+t_day CHAR(1),
+t_time CHAR(10),
+t_max NUMBER,
+t_room CHAR(10),
+CONSTRAINT teach_pk PRIMARY KEY(p_id, c_id, c_id_no),
+CONSTRAINT teach_fk_pid FOREIGN KEY (p_id) REFERENCES professor,
+CONSTRAINT teach_fk_cid FOREIGN KEY (c_id, c_id_no) REFERENCES course
+);
+CREATE TABLE enroll
+(s_id CHAR(20),
+c_id CHAR(20),
+c_id_no CHAR(20),
+e_year NUMBER,
+e_semester NUMBER,
+CONSTRAINT enroll_pk PRIMARY KEY(s_id, c_id, c_id_no),
+CONSTRAINT enroll_fk_sid FOREIGN KEY (s_id) REFERENCES student,
+CONSTRAINT enroll_fk_cid FOREIGN KEY (c_id, c_id_no) REFERENCES course
+);
