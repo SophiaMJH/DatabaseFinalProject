@@ -1,0 +1,213 @@
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416787', 'aaaaa', '명지혜', '컴퓨터과학전공', '효성동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416007', 'aaaaa', '오지윤', '컴퓨터과학전공', '노원구');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416449', 'aaaaa', '김영은', '컴퓨터과학전공', '목동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1412799', 'aaaaa', '전선욱', '컴퓨터과학전공', '분당');
+
+
+
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17001', '심준호', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17002', '이상규', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17003', '최영우', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17004', '채희준', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17005', '김수홍', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17006', '이기용', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17007', '박숙영', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17008', '이현자', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17009', '김주균', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17010', '김윤희', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17011', '이광수', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17012', '유석종', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17013', '문봉희', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17014', '최종원', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17015', '창병모', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17016', '김윤진', '컴퓨터과학전공');
+INSERT INTO professor (p_id, p_name, p_major) VALUES ('17017', '박영훈', '컴퓨터과학전공');
+
+
+
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602001', '001', '네트워크보안', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602002', '001', '데이터베이스설계와질의', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602002', '002', '데이터베이스설계와질의', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602003', '001', '디지털논리회로', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602003', '002', '디지털논리회로', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602004', '001', '리눅스시스템', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602004', '002', '리눅스시스템', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602004', '003', '리눅스시스템', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602005', '001', '모바일소프트웨어', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602006', '001', '분산처리', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602007', '001', '소프트웨어공학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602007', '002', '소프트웨어공학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602008', '001', '캠스톤디자인', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602009', '001', '알고리즘', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602009', '002', '알고리즘', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602010', '001', '영상정보처리', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602011', '001', '자바프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602011', '002', '자바프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602011', '003', '자바프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602011', '004', '자바프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602012', '001', '컴퓨터교재연구및지도법', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602013', '001', '컴퓨터그래픽스', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602014', '001', '컴퓨터네트워크1', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602015', '001', '컴퓨터수학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602015', '002', '컴퓨터수학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602015', '003', '컴퓨터수학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602015', '004', '컴퓨터수학', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602016', '001', '프로그래밍개론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602016', '002', '프로그래밍개론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602016', '003', '프로그래밍개론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602016', '004', '프로그래밍개론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1602017', '001', '컴퓨터실무통합교육', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701001', '001', 'DB프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701002', '001', '소프트웨어의이해', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701002', '002', '소프트웨어의이해', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701002', '003', '소프트웨어의이해', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701002', '004', '소프트웨어의이해', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701002', '005', '소프트웨어의이해', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701003', '001', '수치해석', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701003', '002', '수치해석', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701004', '001', '캡스톤디자인', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701005', '001', '시스템프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701006', '001', '운영체제', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701006', '002', '운영체제', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701007', '001', '웹시스템설계', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701007', '002', '웹시스템설계', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701008', '001', '윈도우프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701008', '002', '윈도우프로그래밍', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701009', '001', '인공지능', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701010', '001', '자료구조', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701010', '002', '자료구조', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701010', '003', '자료구조', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701011', '001', '정보컴퓨터교육론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701012', '001', '컴파일러', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701013', '001', '컴퓨터구조', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701013', '002', '컴퓨터구조', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701014', '001', '컴퓨터네트워크2', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701015', '001', '컴퓨터특강', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701016', '001', '프로그래밍개론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701017', '001', '프로그래밍언어론', 3);
+INSERT INTO course (c_id, c_id_no, c_name, c_unit) VALUES ('1701017', '002', '프로그래밍언어론', 3);
+
+
+
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17017', '1602001', '001', 2016, 2, '화목', '13:30', '14:45', 55, '명신관318');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17001', '1602002', '001', 2016, 2, '월수', '10:30', '11:45', 59, '명신관321');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17001', '1602002', '002', 2016, 2, '월수', '13:30', '14:45', 59, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17009', '1602003', '001', 2016, 2, '화목', '12:00', '13:15', 55, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17009', '1602003', '002', 2016, 2, '화목', '13:30', '14:45', 56, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17015', '1602004', '001', 2016, 2, '월수', '16:30', '18:20', 40, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17015', '1602004', '002', 2016, 2, '화목', '09:00', '10:50', 43, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1602004', '003', 2016, 2, '화목', '16:30', '18:20', 42, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17013', '1602005', '001', 2016, 2, '월수', '16:30', '17:45', 40, '명신관305');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17010', '1602006', '001', 2016, 2, '화목', '12:00', '13:15', 28, '명신관409');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17006', '1602007', '001', 2016, 2, '화목', '10:30', '11:45', 40, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17006', '1602007', '002', 2016, 2, '화목', '15:00', '16:15', 40, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17007', '1602008', '001', 2016, 2, '월금', '15:00', '16:50',  30, '명신관321');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17002', '1602009', '001', 2016, 2, '화목', '10:30', '11:45', 60, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17002', '1602009', '002', 2016, 2, '화목', '13:30', '14:45', 60, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17003', '1602010', '001', 2016, 2, '월수', '16:30', '17:45', 28, '명신관409');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17010', '1602011', '001', 2016, 2, '월수', '16:00', '17:50', 32, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17013', '1602011', '002', 2016, 2, '월수', '18:00', '19:50', 31, '명신관408');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17007', '1602011', '003', 2016, 2, '화목', '11:00', '12:50', 38, '새힘관B102');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17007', '1602011', '004', 2016, 2, '화목', '13:00', '14:50', 34, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1602012', '001', 2016, 2, '금', '09:00', '11:45', 15, '명신관201');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17012', '1602013', '001', 2016, 2, '월수', '12:00', '13:15', 50, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17014', '1602014', '001', 2016, 2, '월수', '13:30', '14:45', 70, '명신관701');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17016', '1602015', '001', 2016, 2, '월수', '13:30', '14:45', 50, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17016', '1602015', '002', 2016, 2, '월수', '18:00', '19:15', 50, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17003', '1602015', '003', 2016, 2, '월수', '10:30', '11:45', 53, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1602015', '004', 2016, 2, '화목', '15:00', '16:15', 55, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17011', '1602016', '001', 2016, 2, '월수', '08:30', '10:20', 30, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17011', '1602016', '002', 2016, 2, '월수', '10:30', '12:20', 30, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17016', '1602016', '003', 2016, 2, '화목', '17:00', '18:50', 28, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17017', '1602016', '004', 2016, 2, '화목', '10:00', '11:50', 57, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17016', '1602017', '001', 2016, 2, '토', '09:00', '12:50', 40, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17001', '1701001', '001', 2017, 1, '월수', '13:30', '14:45', 34, '명신관408');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17002', '1701002', '001', 2017, 1, '화목', '10:30', '11:45', 33, '명신관408');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17002', '1701002', '002', 2017, 1, '화목', '13:30', '14:45', 49, '명신관305');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17003', '1701002', '003', 2017, 1, '월수', '15:00', '15:00', 34, '명신관408');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17004', '1701002', '004', 2017, 1, '월수', '13:30', '14:45', 48, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17005', '1701002', '005', 2017, 1, '월수', '16:30', '17:45', 33, '명신관415');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17006', '1701003', '001', 2017, 1, '화목', '10:30', '11:45', 60, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17006', '1701003', '002', 2017, 1, '화목', '15:00', '16:15', 60, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17007', '1701004', '001', 2017, 1, '월수', '15:00', '16:50', 28, '명신관409');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1701005', '001', 2017, 1, '화목', '10:30', '11:45', 52, '명신관321');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17009', '1701006', '001', 2017, 1, '화목', '12:00', '13:15', 60, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17009', '1701006', '002', 2017, 1, '화목', '13:30', '14:45', 61, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17010', '1701007', '001', 2017, 1, '화목', '15:00', '16:15', 33, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17010', '1701007', '002', 2017, 1, '화목', '16:30', '17:45', 33, '명신관408');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17011', '1701008', '001', 2017, 1, '월수', '08:30', '10:20', 30, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17011', '1701008', '002', 2017, 1, '월수', '10:30', '12:20', 30, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17004', '1701009', '001', 2017, 1, '월수', '10:30', '11:45', 50, '명신관313');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17012', '1701010', '001', 2017, 1, '월수', '12:00', '13:15', 56, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17012', '1701010', '002', 2017, 1, '화목', '10:30', '11:45', 55, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17012', '1701010', '003', 2017, 1, '월수', '15:00', '16:15', 50, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17009', '1701011', '001', 2017, 1, '화목', '16:30', '17:45', 50, '명신관313');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17002', '1701012', '001', 2017, 1, '월수', '12:00', '13:15', 50, '명신관313');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17013', '1701013', '001', 2017, 1, '월수', '15:00', '16:15', 60, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17007', '1701013', '002', 2017, 1, '월수', '12:00', '13:15', 60, '명신관414');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17014', '1701014', '001', 2017, 1, '월수', '16:30', '17:45', 60, '명신관413');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1701015', '001', 2017, 1, '화목', '13:30', '14:45', 60, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17008', '1701016', '001', 2017, 1, '월수', '11:00', '12:50', 50, '명신관321');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17015', '1701017', '001', 2017, 1, '월수', '09:00', '10:50', 59, '명신관309');
+INSERT INTO teach (p_id, c_id, c_id_no, t_year, t_semester, t_day, t_start, t_end, t_max, t_room)
+VALUES ('17015', '1701017', '002', 2017, 1, '월수', '16:00', '17:50', 57, '명신관309');
