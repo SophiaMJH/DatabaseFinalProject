@@ -44,3 +44,10 @@ CONSTRAINT enroll_pk PRIMARY KEY(s_id, c_id, c_id_no),
 CONSTRAINT enroll_fk_sid FOREIGN KEY (s_id) REFERENCES student,
 CONSTRAINT enroll_fk_cid FOREIGN KEY (c_id, c_id_no) REFERENCES course
 );
+CREATE TABLE enrollCheck
+(ec_count NUMBER,
+c_id CHAR(20),
+c_id_no CHAR(3),
+CONSTRAINT encheck_pk PRIMARY KEY(c_id, c_id_no),
+CONSTRAINT encheck_fk_cid FOREIGN KEY(c_id, c_id_no) REFERENCES course
+);
