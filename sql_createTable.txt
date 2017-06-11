@@ -37,7 +37,7 @@ CONSTRAINT teach_fk_cid FOREIGN KEY (c_id, c_id_no) REFERENCES course
 CREATE TABLE enroll
 (s_id CHAR(20),
 c_id CHAR(20),
-c_id_no CHAR(20),
+c_id_no CHAR(3),
 e_year NUMBER,
 e_semester NUMBER,
 CONSTRAINT enroll_pk PRIMARY KEY(s_id, c_id, c_id_no),

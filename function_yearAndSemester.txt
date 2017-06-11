@@ -1,0 +1,33 @@
+CREATE OR REPLACE FUNCTION Date2EnrollYear(dDate IN DATE)
+RETURN NUMBER
+IS
+year NUMBER;
+month NUMBER;
+BEGIN
+SELECT SUBSTR(TO_CHAR(dDate,'yyyyMM'),1,4), SUBSTR(TO_CHAR(dDate,'yyyyMM'),5,2)
+INTO year, month
+FROM DUAL;
+IF (month='11' or month='12') THEN
+year := year+1;
+END IF;
+RETURN year;
+END;
+/
+
+CREATE OR REPLACE FUNCTION Date2EnrollSemester(dDate IN DATE)
+RETURN NUMBER
+IS
+sem NUMBER;
+month NUMBER;
+BEGIN
+SELECT SUBSTR(TO_CHAR(dDate,'yyyyMM'),5,2)
+INTO month
+FROM DUAL;
+IF (month<='4' or month>'10') THEN
+sem := 1;
+ELSIF (month>'4' and month<='10') THEN
+sem := 2;
+END IF;
+RETURN sem;
+END;
+/

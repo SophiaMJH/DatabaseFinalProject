@@ -1,0 +1,143 @@
+CREATE OR REPLACE PROCEDURE InsertEnroll
+(sStudentId IN CHAR,
+sCourseId IN CHAR,
+sCourseIdNo IN CHAR,
+result OUT VARCHAR2)
+
+
+
+IS
+too_many_sumCourseUnit EXCEPTION;
+too_many_courses EXCEPTION;
+too_many_students EXCEPTION;
+duplicate_time EXCEPTION;
+nYear NUMBER;
+nSemester NUMBER;
+nSumCourseUnit NUMBER;
+nCourseUnit NUMBER;
+nCnt NUMBER;
+nTeachMax NUMBER;
+tDay VARCHAR2(10);
+tStartH NUMBER;
+tStartM NUMBER;
+tEndH NUMBER;
+tEndM NUMBER;
+eDay VARCHAR2(10);
+eStartH NUMBER;
+eStartM NUMBER;
+eEndH NUMBER;
+eEndM NUMBER;
+CURSOR time_list IS SELECT c_id, c_id_no FROM enroll WHERE s_id = sStudentId;
+
+
+
+BEGIN
+result := '';
+DBMS_OUTPUT.put_line('#');
+DBMS_OUTPUT.put_line(sStudentId || '님이 과목번호 ' || sCourseId || 
+', 분반 ' || sCourseIdNo || '의 수강 등록을 요청하였습니다.'); 
+
+
+/*연도, 학기 정하기*/
+nYear := Date2EnrollYear(SYSDATE);
+nSemester := Date2EnrollSemester(SYSDATE);
+
+
+/*에러1 : 18학점 초과*/
+SELECT SUM(c.c_unit) 
+INTO nSumCourseUnit
+FROM course c, enroll e
+WHERE e.s_id = sStudentId and e.e_year = nYear and e.e_semester = nSemester and e.c_id = c.c_id and e.c_id_no = c.c_id_no;
+
+SELECT c_unit
+INTO nCourseUnit
+FROM course
+WHERE c_id = sCourseId and c_id_no = sCourseIdNo;
+
+IF (nSumCourseUnit + nCourseUnit > 18) THEN  
+RAISE too_many_sumCourseUnit;
+END IF;
+
+
+/*에러2 : 같은 과목 신청*/
+SELECT COUNT(*)
+INTO nCnt
+FROM enroll
+WHERE s_id = sStudentId and c_id = sCourseId;
+
+IF (nCnt > 0) THEN
+RAISE too_many_courses;
+END IF;
+
+
+/*에러3 : 인원 초과*/
+SELECT t_max
+INTO nTeachMax
+FROM teach
+WHERE t_year= nYear and t_semester = nSemester and c_id = sCourseId and c_id_no = sCourseIdNo;
+
+SELECT ec_count
+INTO nCnt
+FROM enrollCheck
+WHERE c_id = sCourseId and c_id_no = sCourseIdNo;
+
+IF (nCnt >= nTeachMax) THEN
+RAISE too_many_students;
+END IF;
+
+
+
+/*에러4 : 시간 중복 */
+SELECT SUBSTR(t_day,1,1), TO_NUMBER(SUBSTR(t_start,1,2)), TO_NUMBER(SUBSTR(t_start,4,2)),
+TO_NUMBER(SUBSTR(t_end,1,2)), TO_NUMBER(SUBSTR(t_end,4,2))
+INTO tDay, tStartH, tStartM, tEndH, tEndM
+FROM teach
+WHERE t_year= nYear and t_semester = nSemester and c_id = sCourseId and c_id_no = sCourseIdNo;
+
+For duplCheck IN time_list LOOP
+	SELECT SUBSTR(t_day,1,1), TO_NUMBER(SUBSTR(t_start,1,2), '99'), TO_NUMBER(SUBSTR(t_start,4,2), '99'),
+	TO_NUMBER(SUBSTR(t_end,1,2), '99'), TO_NUMBER(SUBSTR(t_end,4,2),'99')
+	INTO eDay, eStartH, eStartM, eEndH, eEndM
+	FROM teach
+	Where c_id = duplCheck.c_id and c_id_no = duplCheck.c_id_no;
+
+	IF (tDay = eDay) THEN
+		IF (tStartH > eEndH OR tEndH < eStartH) THEN exit;
+		ELSIF (tStartH < eEndH) THEN RAISE duplicate_time;
+		ELSIF (tStartH = eEndH) THEN
+			IF (tStartM <= eEndM) THEN RAISE duplicate_time; END IF;
+		ELSIF (tEndH = eStartH) THEN
+			IF (tEndM >= eStartM) THEN RAISE duplicate_time; END IF;
+		END IF;
+	END IF;
+END LOOP;
+
+
+/*수강신청 accept*/
+INSERT INTO enroll(S_ID, C_ID, C_ID_NO, E_YEAR, E_SEMESTER)
+VALUES (sStudentId, sCourseId, sCourseIdNo, nYear, nSemester);
+
+UPDATE enrollCheck
+SET ec_count = ec_count+1
+WHERE c_id = sCourseId and c_id_no = sCourseIdNo;
+
+COMMIT;
+result := '수강신청 등록이 완료되었습니다.';
+
+
+
+EXCEPTION
+WHEN too_many_sumCourseUnit THEN    
+result := '최대학점을 초과하였습니다';	
+WHEN too_many_courses THEN
+result := '이미 등록된 과목을 신청하였습니다';
+WHEN too_many_students THEN
+result := '수강신청 인원이 초과되어 등록이 불가능합니다';
+WHEN duplicate_time THEN
+result := '이미 등록된 과목 중 중복되는 시간이 존재합니다';
+WHEN OTHERS THEN
+ROLLBACK;
+result := SQLCODE;
+
+END;
+/
