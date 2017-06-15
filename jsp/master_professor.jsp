@@ -20,40 +20,37 @@ function check() {
 <body>
 <%@ include file="master_menu.jsp" %>
 <div id="content" align="center">
-<form id = "master_course" action = "master_course_process" onsubmit="return check()">
+<form id = "master_professor" action = "master_professor_process" onsubmit="return check()">
 	<table>
 			<tr height="5"><td width="5"></td></tr>
 			<tr style = "border-color: rgb(13,45,132); border-style: solid; text-align: center; color: black">
-				<td height = "28" width = "100">과목 번호</td>
-				<td>분반</td>
-				<td>과목명</td>
-				<td>학점</td>
+				<td height = "28" width = "100">학번</td>
+				<td>이름</td>
+				<td>학과</td>
 			</tr>
 				<%
-				String mySQL = "SELECT COUNT(*) FROM course";
+				String mySQL = "SELECT COUNT(*) FROM professor";
 				DBExecutor aDBExecutor = new DBExecutor();
 				ResultSet rs = aDBExecutor.queryString(mySQL);
 				if(rs.next())
 					lastRow = rs.getInt(1);
 				
 				if(lastRow > 0) {
-					mySQL = "select * FROM course ORDER BY c_id";
+					mySQL = "select p_id, p_name, p_major FROM professor ORDER BY p_id";
 					rs = aDBExecutor.queryString(mySQL);
 					for(i = 1; rs.next(); i++) {
 						if(i >= startRow && i <= endRow) {
-							String c_id = rs.getString("c_id");
-							String c_id_no = rs.getString("c_id_no");
-							String c_name = rs.getString("c_name");
-							double c_unit = rs.getDouble("c_unit");
+							String p_id = rs.getString("p_id");
+							String p_name = rs.getString("p_name");
+							String p_major = rs.getString("p_major");
 						
 						%>
 						<tr>
-						<td align = "center"><%=c_id %></td>
-						<td align = "center"><%=c_id_no %></td>
-						<td align = "center"><%=c_name %></td>
-						<td align = "center"><%=c_unit %></td>
-						<td align="center"><a href="modify_master_course.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">수정</a></td>
-						<td align="center"><a href="delete_master_course.jsp?c_id=<%=c_id%>&c_id_no=<%=c_id_no%>">삭제</a></td>
+						<td align = "center"><%=p_id %></td>
+						<td align = "center"><%=p_name %></td>
+						<td align = "center"><%=p_major %></td>
+						<td align="center"><a href="modify_master_professor.jsp?p_id=<%=p_id%>">수정</a></td>
+						<td align="center"><a href="delete_master_professor.jsp?p_id=<%=p_id%>">삭제</a></td>
 						<%} %>
 						</tr>
 						<%
@@ -87,18 +84,18 @@ function check() {
 				lastPage = lastRow / listSize + 1;	// 레코드 수에 따라 쪽번호를 매긴다.	
 			if(currentPage > setPage){
 	%>
-				<a href="master_course.jsp?pageNum=<%=currentPage-1%>">[이전]</a>
+				<a href="master_professor.jsp?pageNum=<%=currentPage-1%>">[이전]</a>
 	<% 		}
 				
 			while(setPage <= lastPage) {
 				if(setPage != currentPage){%>
-					<a href="master_course.jsp?pageNum=<%=setPage%>">[<%=setPage%>]</a>
+					<a href="master_professor.jsp?pageNum=<%=setPage%>">[<%=setPage%>]</a>
 	<%			}
 					setPage = setPage + 1;
 			}
 	
 			if(lastPage > currentPage) {%>
-				<a href="master_course.jsp?pageNum=<%=currentPage+1%>">[다음]</a>
+				<a href="master_professor.jsp?pageNum=<%=currentPage+1%>">[다음]</a>
 	<%		}
 		}
 	%>
