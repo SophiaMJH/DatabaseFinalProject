@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>데이터베이스를 활용한 수강신청 시스템 입니다.</title>
-<link rel="stylesheet" href="menu.css">
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="master_menu.css">
+<link rel="stylesheet" href="master_main.css">
 </head>
 <body>
-<%@ include file="menu.jsp" %>
+<%@ include file="master_menu.jsp" %>
 <div id="content" align="center">
 <% if (session_id != null) { %>
 <h3><%=session_id%>님 방문을 환영합니다.</h3>
