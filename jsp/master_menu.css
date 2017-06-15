@@ -23,6 +23,7 @@ body{font-family: '¸¼Àº °íµñ'}
 	float : left;
 	list-style : none;
 }
+
 #menu_bar > ul > li > b > a{
 	padding : 10px 30px 10px 30px;
 	background : rgb(13,45,132);

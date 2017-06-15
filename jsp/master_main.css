@@ -1,38 +1,5 @@
 body{font-family: '¸¼Àº °íµñ'}
-#main_header {
-	margin:10px 10px 10px 10px;
-	position:relative;
-}
-#main_header > #icon {
-	position : relative;
-	left : 30px;
-	margin : 0;
-	padding : 0;
-	width : 500px;
-}
-#main_header > #menu_bar {
-	float : right;
-	margin-left : 30px;
-	margin-top : 10px;
-	width : 850px;
-}
-#menu_bar > ul {
-	overflow : hidden;
-}
-#menu_bar > ul > li {
-	float : left;
-	list-style : none;
-}
-#menu_bar > ul > li > b > a{
-	padding : 10px 30px 10px 30px;
-	background : rgb(13,45,132);
-	display : block;
-	color : white;
-	text-decoration : none;
-	backgroud : black;
-}
-#menu_bar > ul > li > b > a:hover {
-	background : white;
-	color : rgb(13,45,132);
-	text-decoration: none;
+#content {
+	height : 500px;
+	background : url("ns.png") no-repeat center;
 }

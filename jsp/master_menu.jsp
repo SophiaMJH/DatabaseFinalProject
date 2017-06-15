@@ -13,12 +13,4 @@ else log="<a href=logout.jsp>로그아웃</a>";
 <img src="signiture.jpg">
 </a>
 </span>
-<nav id="menu_bar">
-<ul>
-<li><b><%=log%></b></li>
-<li><b><a href="master_professor.jsp">교수 정보</a></b></li>
-<li><b><a href="master_student.jsp">학생 정보</a></b></li>
-<li><b><a href="master_course.jsp">강좌 정보</a></b></li>
-</ul>
-</nav>
 </header>
