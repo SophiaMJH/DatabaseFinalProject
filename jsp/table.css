@@ -1,0 +1,12 @@
+body {
+	font-family : '¸¼Àº °íµñ';
+	color : rgb(13,45,132);
+}
+div { 
+	font-weight : bold;
+	padding : 5px;
+}
+div > input {
+	color : rgb(13,45,132);
+	font-weight : normal;
+}

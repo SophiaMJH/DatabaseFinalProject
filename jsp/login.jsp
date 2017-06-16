@@ -5,11 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>LogIn</title>
+<link rel="stylesheet" href="table.css">
 </head>
 <body>
-<table width="75%" align="center" bgcolor="#FFFF99" border>
-<tr><td><div align="center"> 아이디와 패스워드를 입력하세요</table>
-<table width="75%" align="center" border>
+
+<span id="icon">
+<a href="main.jsp"><img src="signiture.jpg"></a>
+</span>
+
+<div align="center"><h3><b>아이디와 패스워드를 입력하세요</b></h3></div>
+
+<table align="center">
 <FORM method="post" action="login_verify.jsp" >
 <tr><td><div align="center">아이디</div></td>
 <td><div align="center"><input type="text" name="userID"></div></td>

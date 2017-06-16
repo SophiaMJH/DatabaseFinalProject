@@ -26,14 +26,14 @@ body{font-family: '¸¼Àº °íµñ'}
 
 #menu_bar > ul > li > b > a{
 	padding : 10px 30px 10px 30px;
-	background : rgb(13,45,132);
+	background : white;
 	display : block;
-	color : white;
+	color : rgb(13,45,132);
 	text-decoration : none;
-	backgroud : black;
+	background : white;
 }
 #menu_bar > ul > li > b > a:hover {
-	background : white;
-	color : rgb(13,45,132);
+	background :  white;
+	color :rgb(13,45,132);
 	text-decoration: none;
 }

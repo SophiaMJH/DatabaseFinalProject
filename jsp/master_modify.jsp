@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>학생정보수정</title>
+<title>수업정보수정</title>
 <script>
 	function check(){
 		var fr = document.getElementById("update_form");

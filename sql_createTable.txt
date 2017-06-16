@@ -51,3 +51,21 @@ c_id_no CHAR(3),
 CONSTRAINT encheck_pk PRIMARY KEY(c_id, c_id_no),
 CONSTRAINT encheck_fk_cid FOREIGN KEY(c_id, c_id_no) REFERENCES course
 );
+
+ALTER TABLE teach
+DROP CONSTRAINT teach_fk_pid;
+
+ALTER TABLE teach
+DROP CONSTRAINT teach_fk_cid;
+
+ALTER TABLE teach
+ADD CONSTRAINT teach_fk_pid
+FOREIGN KEY (p_id)
+REFERENCES professor(p_id)
+ON DELETE CASCADE;
+
+ALTER TABLE teach
+ADD CONSTRAINT teach_fk_cid
+FOREIGN KEY (c_id, c_id_no)
+REFERENCES course(c_id, c_id_no)
+ON DELETE CASCADE;

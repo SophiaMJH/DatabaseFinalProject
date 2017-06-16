@@ -79,7 +79,8 @@ function check(){
 				if(lastRow > 0) {
 					mySQL = "select t.p_id, t.c_id, t.c_id_no, p_name, c_name, t_day, t_start, t_end, t_max, t_room " + 
 							"FROM teach t, course c, professor p " + 
-							"WHERE t.p_id = p.p_id AND t.c_id = c.c_id AND t.c_id_no = c.c_id_no AND t.t_year=" + year + " AND t.t_semester=" + semester;
+							"WHERE p.p_id = t.p_id AND c.c_id = t.c_id AND c.c_id_no = t.c_id_no " +
+							"ORDER BY c_name ASC, p_name ASC"; // AND t.t_year=" + year + " AND t.t_semester=" + semester
 					rs = aDBExecutor.queryString(mySQL);
 					for(i = 1; rs.next(); i++) {
 						if(i >= startRow && i <= endRow) {
@@ -110,7 +111,7 @@ function check(){
 						<%
 					}
 					rs.close();
-					
+					aDBExecutor.closeStatementAndConnection();					
 				} else {
 					%>
 					<tr>
@@ -124,7 +125,7 @@ function check(){
 	 <table>
         	<tr><td colspan="4" height="5"></td></tr>
         	<tr align="center">
-        		<td align="right"><input type="submit" value="글쓰기" /></td>
+        		<td align="right"><input type="submit" value="추가" /></td>
         	</tr>
      </table>
 </form>

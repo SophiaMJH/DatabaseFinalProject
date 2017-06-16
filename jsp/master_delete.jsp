@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>학생삭제</title>
+<title>수업삭제</title>
 </head>
 <body>
 <%
@@ -16,11 +16,13 @@
 	if(p_id == null) {
 		
 	} else {
-		String mySQL = "DELETE FROM teach WHERE p_id=" + p_id + " AND c_id=" + c_id + " AND c_id_no=" + c_id_no;
-		System.out.println(mySQL);
+		String mySQL;
 		DBExecutor aDBExecutor = new DBExecutor();
-		int result = aDBExecutor.updateString(mySQL);
-		aDBExecutor.close();
+		int result = 0;
+		
+		mySQL = "DELETE FROM course WHERE c_id=" + c_id + " AND c_id_no=" + c_id_no;
+		result = aDBExecutor.updateString(mySQL);
+		aDBExecutor.closeStatementAndConnection();
 		%>
 		<jsp:forward page="master_main.jsp" />
 		<%

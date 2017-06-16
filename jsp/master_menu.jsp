@@ -13,4 +13,9 @@ else log="<a href=logout.jsp>·Î±×¾Æ¿ô</a>";
 <img src="signiture.jpg">
 </a>
 </span>
+<nav id="menu_bar">
+<ul>
+<li><b><%=log%></b></li>
+</ul>
+</nav>
 </header>
