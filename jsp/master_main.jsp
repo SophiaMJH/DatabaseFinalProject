@@ -61,6 +61,19 @@ function check(){
 				<td height = "28" width = "50"></td>
 			</tr>
 				<%
+				double t_year = 0, t_semester = 0;
+				Calendar c = Calendar.getInstance();
+				t_year = (double)c.get(Calendar.YEAR);
+				int t_month = c.get(Calendar.MONTH);
+				if(t_month >= 1 && t_month <= 4)
+					t_semester = 1;
+				else if(t_month >= 5 && t_month <= 10)
+					t_semester = 2;	
+				else if(t_month >= 11 && t_month <= 12) {
+					t_semester = 1;
+					t_year += 1;
+				}
+				
 				String mySQL = "SELECT COUNT(*) FROM teach";
 				DBExecutor aDBExecutor = new DBExecutor();
 				ResultSet rs = aDBExecutor.queryString(mySQL);
@@ -70,8 +83,8 @@ function check(){
 				if(lastRow > 0) {
 					mySQL = "select t.p_id, t.c_id, t.c_id_no, p_name, c_name, t_day, t_start, t_end, t_max, t_room " + 
 							"FROM teach t, course c, professor p " + 
-							"WHERE p.p_id = t.p_id AND c.c_id = t.c_id AND c.c_id_no = t.c_id_no " +
-							"ORDER BY c_name ASC, p_name ASC"; // AND t.t_year=" + year + " AND t.t_semester=" + semester
+							"WHERE p.p_id = t.p_id AND c.c_id = t.c_id AND c.c_id_no = t.c_id_no AND t.t_year='" + t_year + "' AND t.t_semester='" + t_semester +
+							"' ORDER BY c_name ASC, p_name ASC"; 
 					rs = aDBExecutor.queryString(mySQL);
 					for(i = 1; rs.next(); i++) {
 						if(i >= startRow && i <= endRow) {

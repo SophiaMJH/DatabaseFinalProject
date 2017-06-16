@@ -39,10 +39,14 @@
 	Calendar c = Calendar.getInstance();
 	t_year = (double)c.get(Calendar.YEAR);
 	int t_month = c.get(Calendar.MONTH);
-	if(t_month >= 1 && t_month <= 6)
+	if(t_month >= 1 && t_month <= 4)
 		t_semester = 1;
-	else
+	else if(t_month >= 5 && t_month <= 10)
 		t_semester = 2;	
+	else if(t_month >= 11 && t_month <= 12) {
+		t_semester = 1;
+		t_year += 1;
+	}
 	
 	// p_id 가 Professor에 있는지 검
 	mySQL = "SELECT * FROM professor WHERE p_id=" + p_id;

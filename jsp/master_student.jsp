@@ -44,10 +44,14 @@
 				Calendar c = Calendar.getInstance();
 				e_year = (double)c.get(Calendar.YEAR);
 				int e_month = c.get(Calendar.MONTH);
-				if(e_month >= 1 && e_month <= 6)
+				if(e_month >= 1 && e_month <= 4)
 					e_semester = 1;
-				else
+				else if(e_month >= 5 && e_month <= 10)
 					e_semester = 2;	
+				else if(e_month >= 11 && e_month <= 12) {
+					e_semester = 1;
+					e_year += 1;
+				}
 				
 				String mySQL = "SELECT COUNT(*) FROM enroll";
 				DBExecutor aDBExecutor = new DBExecutor();
