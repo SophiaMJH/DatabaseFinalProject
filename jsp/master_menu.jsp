@@ -16,6 +16,8 @@ else log="<a href=logout.jsp>로그아웃</a>";
 <nav id="menu_bar">
 <ul>
 <li><b><%=log%></b></li>
+<li><b><a href="master_main.jsp">강의 정보</a></b></li>
+<li><b><a href="master_student.jsp">학생 및 수강신청</a></b></li>
 </ul>
 </nav>
 </header>

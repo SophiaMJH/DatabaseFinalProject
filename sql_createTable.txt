@@ -69,3 +69,21 @@ ADD CONSTRAINT teach_fk_cid
 FOREIGN KEY (c_id, c_id_no)
 REFERENCES course(c_id, c_id_no)
 ON DELETE CASCADE;
+
+ALTER TABLE enroll
+DROP CONSTRAINT enroll_fk_sid;
+
+ALTER TABLE enroll
+DROP CONSTRAINT enroll_fk_cid;
+
+ALTER TABLE enroll
+ADD CONSTRAINT enroll_tk_sid
+FOREIGN KEY (s_id)
+REFERENCES student(s_id)
+ON DELETE CASCADE;
+
+ALTER TABLE enroll
+ADD CONSTRAINT enroll_tk_cid
+FOREIGN KEY (c_id, c_id_no)
+REFERENCES course(c_id, c_id_no)
+ON DELETE CASCADE;

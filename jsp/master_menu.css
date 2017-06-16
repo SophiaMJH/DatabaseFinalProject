@@ -23,17 +23,16 @@ body{font-family: '¸¼Àº °íµñ'}
 	float : left;
 	list-style : none;
 }
-
 #menu_bar > ul > li > b > a{
 	padding : 10px 30px 10px 30px;
-	background : white;
+	background : rgb(13,45,132);
 	display : block;
-	color : rgb(13,45,132);
+	color : white;
 	text-decoration : none;
-	background : white;
+	backgroud : black;
 }
 #menu_bar > ul > li > b > a:hover {
-	background :  white;
-	color :rgb(13,45,132);
+	background : white;
+	color : rgb(13,45,132);
 	text-decoration: none;
 }

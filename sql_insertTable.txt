@@ -2,7 +2,18 @@ INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416787', 'a
 INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416007', 'aaaaa', '오지윤', '컴퓨터과학전공', '노원구');
 INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1416449', 'aaaaa', '김영은', '컴퓨터과학전공', '목동');
 INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1412799', 'aaaaa', '전선욱', '컴퓨터과학전공', '분당');
-
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410110', 'aaaaa', '명지혜', '컴퓨터과학전공', '효성동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410111', 'aaaaa', '오로라', '컴퓨터과학전공', '노원구');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410112', 'aaaaa', '쟈스민', '컴퓨터과학전공', '목동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410113', 'aaaaa', '강하나', '컴퓨터과학전공', '분당');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410114', 'aaaaa', '판빙빙', '컴퓨터과학전공', '효성동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410115', 'aaaaa', '사토미', '컴퓨터과학전공', '노원구');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410116', 'aaaaa', '레이첼', '컴퓨터과학전공', '목동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410117', 'aaaaa', '성시원', '컴퓨터과학전공', '분당');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410118', 'aaaaa', '희소식', '컴퓨터과학전공', '효성동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410119', 'aaaaa', '성춘향', '컴퓨터과학전공', '노원구');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410120', 'aaaaa', '황진이', '컴퓨터과학전공', '목동');
+INSERT INTO student (s_id, s_pwd, s_name, s_major, s_addr) VALUES ('1410133', 'aaaaa', '전지현', '컴퓨터과학전공', '목동');
 
 
 INSERT INTO professor (p_id, p_name, p_major) VALUES ('17001', '심준호', '컴퓨터과학전공');
@@ -273,3 +284,23 @@ INSERT INTO enrollCheck (ec_count, c_id, c_id_no) VALUES (0, '1701015', '001');
 INSERT INTO enrollCheck (ec_count, c_id, c_id_no) VALUES (0, '1701016', '001');
 INSERT INTO enrollCheck (ec_count, c_id, c_id_no) VALUES (0, '1701017', '001');
 INSERT INTO enrollCheck (ec_count, c_id, c_id_no) VALUES (0, '1701017', '002');
+
+
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410111', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410112', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410113', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410114', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410115', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410116', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410117', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410118', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410119', '1702001', '001', 2017, 2);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410111', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410112', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410113', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410114', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410115', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410116', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410117', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410118', '1701003', '001', 2017, 1);
+INSERT INTO enroll(s_id, c_id, c_id_no, e_year, e_semester) VALUES('1410119', '1701003', '001', 2017, 1);

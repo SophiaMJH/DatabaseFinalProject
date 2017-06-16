@@ -67,15 +67,6 @@ function check(){
 				if(rs.next())
 					lastRow = rs.getInt(1);
 				
-				Calendar c = Calendar.getInstance();
-				String year = String.valueOf(c.get(Calendar.YEAR));
-				String month = String.valueOf(c.get(Calendar.MONTH));
-				String semester = null;
-				int iMonth = Integer.parseInt(month);
-				if(iMonth >= 1 && iMonth <= 6)
-					semester = "1";
-				else
-					semester = "2";
 				if(lastRow > 0) {
 					mySQL = "select t.p_id, t.c_id, t.c_id_no, p_name, c_name, t_day, t_start, t_end, t_max, t_room " + 
 							"FROM teach t, course c, professor p " + 
