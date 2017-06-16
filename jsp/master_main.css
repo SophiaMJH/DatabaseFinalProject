@@ -1,5 +1,9 @@
 body{font-family: '¸¼Àº °íµñ'}
 #content {
 	height : 500px;
-	background : url("ns.png") no-repeat center;
+	background : url("ns_master.png") no-repeat center;
+}
+div { 
+	font-weight : bold;
+	padding : 5px;
 }

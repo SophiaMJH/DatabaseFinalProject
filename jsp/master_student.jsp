@@ -27,7 +27,7 @@
 <%@ include file="master_menu.jsp" %>
 <div id="content" align="center">
 <form id="master_main">
-	<table>
+	<table width="50%">
 			<tr height="5"><td width="5"></td></tr>
 			<tr style = "background-color: rgb(13,45,132); text-align: center; color: white">
 				<td height = "28" width = "100">ÇÐ¹ø</td>

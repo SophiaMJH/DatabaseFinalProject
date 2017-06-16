@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="table.css">
 </head>
 <body>
+
+
+
 <%@ include file="menu.jsp" %>
 <% 
 	if(session_id == null){
@@ -27,13 +30,11 @@
 	myConn = DriverManager.getConnection (dburl, user, passwd);
 
 	stmt = myConn.createStatement();
-	String mySQL = "select s_addr,s_pwd,s_major from student where s_id='" + userID + "'";
+	String mySQL = "select s_addr,s_pwd,s_major, s_name from student where s_id='" + userID + "'";
 	rs = stmt.executeQuery(mySQL);
 %>
 
 
-
-<h3 align="center"><%=session_id%>님의 정보를 수정합니다.</h3>
 
 
 <table align="center">
@@ -42,14 +43,21 @@
 <%
 while(rs.next()){
 	
+	String s_name = rs.getString("s_name");
 	String s_pwd =rs.getString("s_pwd");
 	String s_addr = rs.getString("s_addr");
 	String s_major = rs.getString("s_major");
 	%>
-	<tr><td colspan=2><input type="hidden" name="userID" value=<%=userID %>></td></tr>
+	<h3 align="center"><%=s_name%>님의 정보를 수정합니다.</h3>
+	
+	<tr><td><div align="center">ID</div></td>
+	<td><div align="center"><input type="text" name="userID" value=<%=userID %> readonly="readonly" ></td></tr>
+	</div></td>
+	</tr>
+	
 	
 	<tr><td><div align="center">패스워드</div></td>
-	<td><div align="center"><input type="password" name="s_pwd" value=<%=s_pwd %>>
+	<td><div align="center"><input type="text" name="s_pwd" value=<%=s_pwd %>>
 	</div></td>
 	</tr>
 	

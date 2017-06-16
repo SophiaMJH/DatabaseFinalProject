@@ -19,14 +19,14 @@
 	}
 </script>
 </head>
-<body>
+<body align="center">
 	<form id="delete_form" action="master_delete_student_process.jsp" onsubmit="return check()" method="post">
-       	<table>
+       	<table align="center">
 			<tr><td bgcolor="rgb(13,45,132)" height="25" width="80" align="center"><font color="white">학번</font></td>
 			<td><input type="text" name="s_id"  /></tr>
        	</table>
        	<input type = "button" name="cancle_btn" value="취소" onclick="self.close()"/>
-		<input type="submit" name="submit_btn" value="식제"/>
+		<input type="submit" name="submit_btn" value="삭제"/>
     </form>
 </body>
 </html>

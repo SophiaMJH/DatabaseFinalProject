@@ -47,7 +47,7 @@ function check(){
 <%@ include file="master_menu.jsp" %>
 <div id="content" align="center">
 <form id="master_main" action="master_register.jsp" onsubmit="return check()">
-	<table>
+	<table width="80%">
 			<tr height="5"><td width="5"></td></tr>
 			<tr style = "background-color: rgb(13,45,132); text-align: center; color: white">
 				<td height = "28" width = "100">교수님</td>
@@ -61,18 +61,7 @@ function check(){
 				<td height = "28" width = "50"></td>
 			</tr>
 				<%
-				double t_year = 0, t_semester = 0;
-				Calendar c = Calendar.getInstance();
-				t_year = (double)c.get(Calendar.YEAR);
-				int t_month = c.get(Calendar.MONTH);
-				if(t_month >= 1 && t_month <= 4)
-					t_semester = 1;
-				else if(t_month >= 5 && t_month <= 10)
-					t_semester = 2;	
-				else if(t_month >= 11 && t_month <= 12) {
-					t_semester = 1;
-					t_year += 1;
-				}
+				
 				
 				String mySQL = "SELECT COUNT(*) FROM teach";
 				DBExecutor aDBExecutor = new DBExecutor();
@@ -83,8 +72,7 @@ function check(){
 				if(lastRow > 0) {
 					mySQL = "select t.p_id, t.c_id, t.c_id_no, p_name, c_name, t_day, t_start, t_end, t_max, t_room " + 
 							"FROM teach t, course c, professor p " + 
-							"WHERE p.p_id = t.p_id AND c.c_id = t.c_id AND c.c_id_no = t.c_id_no AND t.t_year='" + t_year + "' AND t.t_semester='" + t_semester +
-							"' ORDER BY c_name ASC, p_name ASC"; 
+							"WHERE p.p_id = t.p_id AND c.c_id = t.c_id AND c.c_id_no = t.c_id_no ORDER BY c_name ASC, p_name ASC"; 
 					rs = aDBExecutor.queryString(mySQL);
 					for(i = 1; rs.next(); i++) {
 						if(i >= startRow && i <= endRow) {
@@ -114,6 +102,7 @@ function check(){
 						</tr>
 						<%
 					}
+					lastRow = i-1;
 					rs.close();
 					aDBExecutor.closeStatementAndConnection();					
 				} else {
@@ -133,33 +122,31 @@ function check(){
         	</tr>
      </table>
 </form>
-				
-   		 <%
-		if(lastRow > 0) {	// 페이지가 넘어갈 때 넘겨줄 파라미터
-			int setPage = 1;	// 마지막 페이지의 번호를 저장
-			int lastPage = 0;
-			if(lastRow % listSize == 0)
-				lastPage = lastRow / listSize;
-			else
-				lastPage = lastRow / listSize + 1;	// 레코드 수에 따라 쪽번호를 매긴다.	
-			if(currentPage > setPage){
-	%>
-				<a href="master_main.jsp?pageNum=<%=currentPage-1%>">[이전]</a>
-	<% 		}
-				
-			while(setPage <= lastPage) {
-				if(setPage != currentPage){%>
-					<a href="master_main.jsp?pageNum=<%=setPage%>">[<%=setPage%>]</a>
-	<%			}
-					setPage = setPage + 1;
-			}
-	
-			if(lastPage > currentPage) {%>
-				<a href="master_main.jsp?pageNum=<%=currentPage+1%>">[다음]</a>
-	<%		}
-		}
-	%>
-
+			<%
+				if(lastRow > 0) {	// 페이지가 넘어갈 때 넘겨줄 파라미터
+					int setPage = 1;	// 마지막 페이지의 번호를 저장
+					int lastPage = 0;
+					if(lastRow % listSize == 0)
+						lastPage = lastRow / listSize;
+					else
+						lastPage = (lastRow / listSize) + 1;	// 레코드 수에 따라 쪽번호를 매긴다.	
+					if(currentPage > setPage){
+			%>
+						<a href="master_main.jsp?pageNum=<%=currentPage-1%>">[이전]</a>
+			<% 		}
+						
+					while(setPage <= lastPage) {
+						if(setPage != currentPage){%>
+							<a href="master_main.jsp?pageNum=<%=setPage%>">[<%=setPage%>]</a>
+			<%			}
+							setPage = setPage + 1;
+					}
+			
+					if(lastPage > currentPage) {%>
+						<a href="master_main.jsp?pageNum=<%=currentPage+1%>">[다음]</a>
+			<%		}
+				}%>
+   		 
 </div>
 </body>
 </html>
